@@ -14,14 +14,14 @@ form = cgi.FieldStorage()
 username = form["username"].value
 password = form["password"].value
 
-conn = mysql.connector.connect(user='root', password='mysql', database='thrones')	#This is probably a garbage line
+conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')	#This is probably a garbage line
 cursor = conn.cursor()
 
 query = 'SELECT * FROM User WHERE username=%s AND password=%s'
 
 cursor.execute(query, (username, password))
 
-if True :#TODO : find how to determine if cursor contains a row
+if True :#TODO : find how to determine if cursor contains a row	
 	# TODO somehow log them in
 	# use a cookie?
 	# Then bring them to a dummy "You have been logged in!" page
