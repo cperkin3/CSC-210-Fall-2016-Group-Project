@@ -8,7 +8,13 @@
 	<body>
 		<header> <!-- All Top-level .html files should have exactly the same header contents -->
 			<div class="login-top">
-				Login: Username: Password: TODO: Create Form & Script
+			<!-- I want to make this depend on whether or not they have a 'logged in' cookie, but I don't know how -->
+				<form method="POST" action="../cgi-bin/login.py"">
+					Login: 
+					Username: <input type="text" name="username" required/> 
+					Password: <input type="password" name="password" required/>TODO: Script
+					<input type="submit" value="Log in!"/>
+				</form>
 				<a href="html-pages/create-account.html">Create Account</a>
 			</div>
 		</header>
