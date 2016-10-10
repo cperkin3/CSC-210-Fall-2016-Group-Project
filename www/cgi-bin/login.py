@@ -44,18 +44,33 @@ elif 'logged_in' in cook_str :
 						<input type="submit" value="Log out"/>
 					</form>'''
 else :
-	content = '''<h1>Somehow, you have a malformed cookie :</h1>
-				<ul>'''
-	for key in cookie :
-		content += '<li>' + key + ':' + cookie[key].value + '</li>'
-	content += '</ul>'
+	cookie = Cookie.SimpleCookie(cook_str)
+	username = form["username"].value
+	password = form["password"].value
+
+	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
+	cursor = conn.cursor()
+
+	query = 'SELECT COUNT(*) FROM User WHERE username=%s AND password=%s'
+
+	cursor.execute(query, (username, password))
+
+	row = cursor.fetchone()
+	
+	if row == 1 :
+		header = 'Set-Cookie: logged_in=' + username + '; path=/'
+		content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
+	else :
+		content += '''<h1>Incorrect username or password</h1>
+					<form method="POST" action="../cgi-bin/login.py"">
+							Username: <input type="text" name="username" required/> <br>
+							Password: <input type="password" name="password" required/> <br>
+							<input type="submit" value="Log in!"/>
+					</form>'''
 
 print header
 print
-print '''Content-type: text/html
-Set-Cookie: logged_in={}; path=/
-
-		<!doctype html>
+print '''<!doctype html>
 		<html>
 			<head>
 				<title>CSC 210 Project</title>
