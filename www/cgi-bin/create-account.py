@@ -1,4 +1,4 @@
-#!/usr/bin/python
+#!C:\Python27\python.exe
 
 import cgitb
 import cgi
@@ -28,17 +28,17 @@ email = new_account['email'].value
 birthday = new_account['birthday'].value
 
 # Data Validation
-error_stirng = ""
-if username = "":
+error_string = ""
+if username == "":
 	error_string += "Error: Username must be filled out.\n"
 # elif
 	# Check if username is already used - if so, tell username
 
-if password = "":
+if password == "":
 	error_string += "Error: Password must be filled out.\n"
 
 email_pattern = re.compile(r"[^@]+@[^@]+\.[^@]+")
-if email = "":
+if email == "":
 	error_string += "Error: Email must be filled out.\n"
 elif not email_pattern.match(email):
 	error_string += "Error: Invalid email. Email must contain @ and .\n"
