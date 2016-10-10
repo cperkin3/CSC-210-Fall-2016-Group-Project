@@ -14,7 +14,7 @@ form = cgi.FieldStorage()
 username = form["username"].value
 password = form["password"].value
 
-conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')	#This is probably a garbage line
+conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 cursor = conn.cursor()
 
 query = 'SELECT * FROM User WHERE username=%s AND password=%s'
