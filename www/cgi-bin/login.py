@@ -20,14 +20,15 @@ if not cook_str :
 
 	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 	cursor = conn.cursor()
-
-	query = 'SELECT COUNT(*) FROM User WHERE username=%s AND password=%s'
+	
+	query = 'SELECT * FROM User WHERE username=%s AND password=%s'
 
 	cursor.execute(query, (username, password))
 
-	row = cursor.fetchone()
-	
-	if row == 1 :
+	count = 0
+	for row in cursor :
+		count += 1
+	if cursor.rowcount == 1 :
 		header = 'Set-Cookie: logged_in=' + username + '; path=/'
 		content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
 	else :
@@ -37,6 +38,8 @@ if not cook_str :
 							Password: <input type="password" name="password" required/> <br>
 							<input type="submit" value="Log in!"/>
 					</form>'''
+#	cursor.close()
+#	conn.close()
 elif 'logged_in' in cook_str :
 	cookie = Cookie.SimpleCookie(cook_str)
 	content += '<h1>You are already logged in, ' + cookie['logged_in'].value + '''!</h1>
@@ -54,10 +57,11 @@ else :
 	query = 'SELECT COUNT(*) FROM User WHERE username=%s AND password=%s'
 
 	cursor.execute(query, (username, password))
-
-	row = cursor.fetchone()
 	
-	if row == 1 :
+	count = 0
+	for row in cursor :
+		count += 1
+	if count == 1 :
 		header = 'Set-Cookie: logged_in=' + username + '; path=/'
 		content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
 	else :
@@ -67,6 +71,8 @@ else :
 							Password: <input type="password" name="password" required/> <br>
 							<input type="submit" value="Log in!"/>
 					</form>'''
+	cursor.close()
+	conn.close()
 
 print header
 print
@@ -95,7 +101,7 @@ print '''<!doctype html>
 				<nav><!-- All Top-level .html files should have exactly the same header contents -->
 					<ul>
 						<li>
-							<a class="current" href="../index.html">Home</a>
+							<a href="../index.html">Home</a>
 						</li>
 						<li>
 							<a href="../forum.html">Forum</a>
