@@ -11,3 +11,7 @@ h1 {
 	top: 100px;*/
 	text-align: center;
 }
+
+header form {
+	display: inline;
+}
