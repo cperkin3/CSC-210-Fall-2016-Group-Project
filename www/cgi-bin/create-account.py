@@ -12,7 +12,6 @@ cgitb.enable()
 
 new_account = cgi.FieldStorage()
 
-# Header, Blank Line, Head Print here in case of error later
 print 'Content-Type: text/html'
 print
 print '''<html>
@@ -141,6 +140,4 @@ print "<h1>Congratulations! You have successfully created your account with user
 print '''
   </body>
 </html>
-
 '''
-
