@@ -1,4 +1,5 @@
 #!C:\Python27\python.exe
+#!/usr/bin/env python
 
 import cgitb
 import Cookie

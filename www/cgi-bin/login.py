@@ -1,10 +1,13 @@
 #!C:\Python27\python.exe
+#!/usr/bin/env python
 
 import cgi
 import cgitb
 import mysql.connector
 import Cookie
 import os
+import hashlib
+import datetime
 
 cgitb.enable()
 
@@ -21,25 +24,39 @@ if not cook_str :
 	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 	cursor = conn.cursor()
 	
-	query = 'SELECT * FROM User WHERE username=%s AND password=%s'
+	query = 'SELECT * FROM User WHERE username=%s;'
 
-	cursor.execute(query, (username, password))
-
-	count = 0
-	for row in cursor :
-		count += 1
-	if cursor.rowcount == 1 :
-		header = 'Set-Cookie: logged_in=' + username + '; path=/'
-		content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
-	else :
-		content += '''<h1>Incorrect username or password</h1>
+	cursor.execute(query, (username,))
+	
+	try :
+		row = cursor.fetchone()
+		for data in row :
+			content += str(data) + '<br>'
+		salt = str(row[5])
+		hasher = hashlib.md5()
+		hasher.update(password)
+		hasher.update(salt)
+		encrypted_password = hasher.hexdigest()
+		
+		if row[1] == encrypted_password :
+			header = 'Set-Cookie: logged_in=' + username + '; path=/'
+			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
+		else :
+			content += '''<h1>Incorrect password</h1>
+					<form method="POST" action="../cgi-bin/login.py"">
+							Username: <input type="text" name="username" required/> <br>
+							Password: <input type="password" name="password" required/> <br>
+							<input type="submit" value="Log in!"/>
+					</form>'''
+	except (mysql.connector.Error, TypeError) :
+		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
 							Password: <input type="password" name="password" required/> <br>
 							<input type="submit" value="Log in!"/>
 					</form>'''
 #	cursor.close()
-#	conn.close()
+	conn.close()
 elif 'logged_in' in cook_str :
 	cookie = Cookie.SimpleCookie(cook_str)
 	content += '<h1>You are already logged in, ' + cookie['logged_in'].value + '''!</h1>
@@ -53,25 +70,32 @@ else :
 
 	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 	cursor = conn.cursor()
+	
+	current_time = datetime.datetime.now().date()
+	salt = str(current_time)
+
+	hasher = hashlib.md5()
+	hasher.update(password)
+	hasher.update(salt)
+	encrypted_password = hasher.hexdigest()
 
 	query = 'SELECT COUNT(*) FROM User WHERE username=%s AND password=%s'
 
-	cursor.execute(query, (username, password))
+	cursor.execute(query, (username, encrypted_password))
 	
-	count = 0
-	for row in cursor :
-		count += 1
-	if count == 1 :
+	if cursor.rowcount == 1 :
 		header = 'Set-Cookie: logged_in=' + username + '; path=/'
 		content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
 	else :
+		content += 'username = ' + username + '<br>'
+		content += 'encrypted password = ' + encrypted_password + '<br>'
 		content += '''<h1>Incorrect username or password</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
 							Password: <input type="password" name="password" required/> <br>
 							<input type="submit" value="Log in!"/>
 					</form>'''
-	cursor.close()
+#	cursor.close()
 	conn.close()
 
 print header

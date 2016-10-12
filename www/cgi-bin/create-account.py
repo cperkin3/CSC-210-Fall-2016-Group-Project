@@ -31,6 +31,9 @@ print '''<html>
 				Password: <input type="password" name="password" required/>TODO: Script
 				<input type="submit" value="Log in!"/>
 			</form>
+			<form method="POST" action="logout.py">
+					<input type="submit" value="Log out"/>
+				</form>
 			<a href="../html-pages/create-account.html">Create Account</a>
 		</div>
 	</header>
