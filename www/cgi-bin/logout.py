@@ -30,7 +30,7 @@ print '''<!doctype html>
 				<form method="POST" action="../cgi-bin/logout.py"">
 					<input type="submit" value="Log out"/>
 				</form>
-				<a href="html-pages/create-account.html">Create Account</a>
+				<a href="../html-pages/create-account.html">Create Account</a>
 			</div>
 		</header>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
