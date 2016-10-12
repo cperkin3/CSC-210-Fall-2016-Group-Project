@@ -7,6 +7,7 @@ import sys
 import mysql.connector
 import datetime 
 import time
+import hashlib
 
 cgitb.enable()
 
@@ -108,7 +109,7 @@ else:
 		  </body>
 		</html>"""
 		sys.exit(0)
-
+		
 # validate date - make sure not empty and no one under 13 can create an account
 
 # If any data invalid, print error and quit program
@@ -120,12 +121,18 @@ if error_string != "":
 	'''
 	sys.exit(0)
 
-current_time = datetime.datetime.now().date() 
+current_time = datetime.datetime.now().date()
+salt = str(current_time)
+
+hasher = hashlib.md5()
+hasher.update(password)
+hasher.update(salt)
+encrypted_password = hasher.hexdigest()
 
 query = 'INSERT INTO User (username, password, email, birthdate, join_date) VALUES (%s, %s, %s, %s, %s)'
 
 try:
-	cursor.execute(query, (username, password, email, birthday, current_time))
+	cursor.execute(query, (username, encrypted_password, email, birthday, current_time))
 	conn.commit()
 except:
 	conn.rollback()
