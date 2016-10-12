@@ -30,8 +30,6 @@ if not cook_str :
 	
 	try :
 		row = cursor.fetchone()
-		for data in row :
-			content += str(data) + '<br>'
 		salt = str(row[5])
 		hasher = hashlib.md5()
 		hasher.update(password)
@@ -64,32 +62,38 @@ elif 'logged_in' in cook_str :
 						<input type="submit" value="Log out"/>
 					</form>'''
 else :
-	cookie = Cookie.SimpleCookie(cook_str)
+	form = cgi.FieldStorage()
+
 	username = form["username"].value
 	password = form["password"].value
 
 	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 	cursor = conn.cursor()
 	
-	current_time = datetime.datetime.now().date()
-	salt = str(current_time)
+	query = 'SELECT * FROM User WHERE username=%s;'
 
-	hasher = hashlib.md5()
-	hasher.update(password)
-	hasher.update(salt)
-	encrypted_password = hasher.hexdigest()
-
-	query = 'SELECT COUNT(*) FROM User WHERE username=%s AND password=%s'
-
-	cursor.execute(query, (username, encrypted_password))
+	cursor.execute(query, (username,))
 	
-	if cursor.rowcount == 1 :
-		header = 'Set-Cookie: logged_in=' + username + '; path=/'
-		content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
-	else :
-		content += 'username = ' + username + '<br>'
-		content += 'encrypted password = ' + encrypted_password + '<br>'
-		content += '''<h1>Incorrect username or password</h1>
+	try :
+		row = cursor.fetchone()
+		salt = str(row[5])
+		hasher = hashlib.md5()
+		hasher.update(password)
+		hasher.update(salt)
+		encrypted_password = hasher.hexdigest()
+		
+		if row[1] == encrypted_password :
+			header = 'Set-Cookie: logged_in=' + username + '; path=/'
+			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
+		else :
+			content += '''<h1>Incorrect password</h1>
+					<form method="POST" action="../cgi-bin/login.py"">
+							Username: <input type="text" name="username" required/> <br>
+							Password: <input type="password" name="password" required/> <br>
+							<input type="submit" value="Log in!"/>
+					</form>'''
+	except (mysql.connector.Error, TypeError) :
+		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
 							Password: <input type="password" name="password" required/> <br>
