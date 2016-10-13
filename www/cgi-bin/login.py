@@ -23,19 +23,34 @@ if not cook_str :
 	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 	cursor = conn.cursor()
 	
-	query = 'SELECT * FROM User WHERE username=%s;'
+	query = 'SELECT COUNT(*) FROM Users WHERE username=%s;'
 
 	cursor.execute(query, (username,))
 	
-	try :
+	row = cursor.fetchone()
+	
+	if row[0] == 1 :
+		
+		query = 'SELECT join_date FROM Users WHERE username=%s'
+		cursor.execute(query, (username,))
+		
 		row = cursor.fetchone()
-		salt = str(row['join_date'])
+		for key in row :
+			salt = str(key)
+		
 		hasher = hashlib.md5()
 		hasher.update(password)
 		hasher.update(salt)
 		encrypted_password = hasher.hexdigest()
 		
-		if row['password'] == encrypted_password :
+		query = 'SELECT password FROM Users WHERE username=%s'
+		cursor.execute(query, (username,))
+		row = cursor.fetchone()
+		
+		for key in row :
+			attempt_password = str(key)
+		
+		if attempt_password == encrypted_password :
 			header = 'Set-Cookie: logged_in=' + username + '; path=/'
 			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
 		else :
@@ -45,7 +60,8 @@ if not cook_str :
 							Password: <input type="password" name="password" required/> <br>
 							<input type="submit" value="Log in!"/>
 					</form>'''
-	except (mysql.connector.Error, TypeError) :
+	else :
+		content += str(err) + '<br>'
 		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
@@ -54,6 +70,7 @@ if not cook_str :
 					</form>'''
 #	cursor.close()
 	conn.close()
+
 elif 'logged_in' in cook_str :
 	cookie = Cookie.SimpleCookie(cook_str)
 	content += '<h1>You are already logged in, ' + cookie['logged_in'].value + '''!</h1>
@@ -69,19 +86,34 @@ else :
 	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 	cursor = conn.cursor()
 	
-	query = 'SELECT * FROM User WHERE username=%s;'
+	query = 'SELECT COUNT(*) FROM Users WHERE username=%s;'
 
 	cursor.execute(query, (username,))
 	
-	try :
+	row = cursor.fetchone()
+	
+	if row[0] == 1 :
+		
+		query = 'SELECT join_date FROM Users WHERE username=%s'
+		cursor.execute(query, (username,))
+		
 		row = cursor.fetchone()
-		salt = str(row['join_date'])
+		for key in row :
+			salt = str(key)
+		
 		hasher = hashlib.md5()
 		hasher.update(password)
 		hasher.update(salt)
 		encrypted_password = hasher.hexdigest()
 		
-		if row['password'] == encrypted_password :
+		query = 'SELECT password FROM Users WHERE username=%s'
+		cursor.execute(query, (username,))
+		row = cursor.fetchone()
+		
+		for key in row :
+			attempt_password = str(key)
+		
+		if attempt_password == encrypted_password :
 			header = 'Set-Cookie: logged_in=' + username + '; path=/'
 			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
 		else :
@@ -91,7 +123,8 @@ else :
 							Password: <input type="password" name="password" required/> <br>
 							<input type="submit" value="Log in!"/>
 					</form>'''
-	except (mysql.connector.Error, TypeError) :
+	else :
+		content += str(err) + '<br>'
 		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
