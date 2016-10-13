@@ -75,7 +75,7 @@ error_string = ""
 if username == "":
 	error_string += "Error: Username must be filled out.\n"
 else:
-	query = "SELECT COUNT(*) FROM User WHERE username=%s"
+	query = "SELECT COUNT(*) FROM Users WHERE username=%s"
 	cursor.execute(query, (username,))
 	row = cursor.fetchone()
 	if row[0] == 1:
@@ -99,7 +99,7 @@ if email == "":
 elif not email_pattern.match(email):
 	error_string += "Error: Invalid email. Email must contain @ and .\n"
 else:
-	query = "SELECT COUNT(*) FROM User WHERE email=%s"
+	query = "SELECT COUNT(*) FROM Users WHERE email=%s"
 	cursor.execute(query, (email,))
 	row = cursor.fetchone()
 	if row[0] == 1:
@@ -133,7 +133,7 @@ hasher.update(password)
 hasher.update(salt)
 encrypted_password = hasher.hexdigest()
 
-query = 'INSERT INTO User (username, password, email, birthdate, join_date) VALUES (%s, %s, %s, %s, %s)'
+query = 'INSERT INTO Users (username, password, email, birthdate, join_date) VALUES (%s, %s, %s, %s, %s)'
 
 try:
 	cursor.execute(query, (username, encrypted_password, email, birthday, current_time))
