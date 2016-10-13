@@ -7,7 +7,6 @@ import mysql.connector
 import Cookie
 import os
 import hashlib
-import datetime
 
 cgitb.enable()
 
@@ -30,13 +29,13 @@ if not cook_str :
 	
 	try :
 		row = cursor.fetchone()
-		salt = str(row[5])
+		salt = str(row['join_date'])
 		hasher = hashlib.md5()
 		hasher.update(password)
 		hasher.update(salt)
 		encrypted_password = hasher.hexdigest()
 		
-		if row[1] == encrypted_password :
+		if row['password'] == encrypted_password :
 			header = 'Set-Cookie: logged_in=' + username + '; path=/'
 			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
 		else :
@@ -76,13 +75,13 @@ else :
 	
 	try :
 		row = cursor.fetchone()
-		salt = str(row[5])
+		salt = str(row['join_date'])
 		hasher = hashlib.md5()
 		hasher.update(password)
 		hasher.update(salt)
 		encrypted_password = hasher.hexdigest()
 		
-		if row[1] == encrypted_password :
+		if row['password'] == encrypted_password :
 			header = 'Set-Cookie: logged_in=' + username + '; path=/'
 			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
 		else :

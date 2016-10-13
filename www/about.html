@@ -8,7 +8,14 @@
 	<body>
 		<header> <!-- All Top-level .html files should have exactly the same header contents -->
 			<div class="login-top">
-				Login: Username: Password: TODO: Create Form & Script
+				<form method="POST" action="cgi-bin/login.py">
+					Username: <input type="text" name="username" required/> 
+					Password: <input type="password" name="password" required/>
+					<input type="submit" value="Log in!"/>
+				</form>
+				<form method="POST" action="cgi-bin/logout.py">
+					<input type="submit" value="Log out"/>
+				</form>
 				<a href="html-pages/create-account.html">Create Account</a>
 			</div>
 		</header>
