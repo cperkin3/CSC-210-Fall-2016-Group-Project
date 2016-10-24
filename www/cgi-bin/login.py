@@ -7,6 +7,7 @@ import mysql.connector
 import Cookie
 import os
 import hashlib
+import datetime
 
 cgitb.enable()
 
@@ -51,8 +52,52 @@ if not cook_str :
 			attempt_password = str(key)
 		
 		if attempt_password == encrypted_password :
-			header = 'Set-Cookie: logged_in=' + username + '; path=/'
+			exp_date = (datetime.datetime.now().date() + datetime.timedelta(30))
+			header = 'Set-Cookie: logged_in=' + username + '; path=/; expires='
+			week_int = exp_date.isoweekday()
+			if week_int == 1 :
+				header += 'Mon'
+			elif week_int == 2 :
+				header += 'Tue'
+			elif week_int == 3 :
+				header += 'Wed'
+			elif week_int == 4 :
+				header += 'Thu'
+			elif week_int == 5 :
+				header += 'Fri'
+			elif week_int == 6 :
+				header += 'Sat'
+			elif week_int == 7 :
+				header += 'Sun'
+			header += ', ' + str(exp_date.day) + ' '
+			month_int = exp_date.month
+			if month_int == 1 :
+				header += 'Jan'
+			if month_int == 2 :
+				header += 'Feb'
+			if month_int == 3 :
+				header += 'Mar'
+			if month_int == 4 :
+				header += 'Apr'
+			if month_int == 5 :
+				header += 'May'
+			if month_int == 6 :
+				header += 'Jun'
+			if month_int == 7 :
+				header += 'Jul'
+			if month_int == 8 :
+				header += 'Aug'
+			if month_int == 9 :
+				header += 'Sep'
+			if month_int == 10 :
+				header += 'Oct'
+			if month_int == 11 :
+				header += 'Nov'
+			if month_int == 12 :
+				header += 'Dec'
+			header += ' ' + str(exp_date.year) + ' 00:00:00 GMT'
 			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
+			content += header
 		else :
 			content += '''<h1>Incorrect password</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
