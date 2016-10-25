@@ -73,27 +73,27 @@ if not cook_str :
 			month_int = exp_date.month
 			if month_int == 1 :
 				header += 'Jan'
-			if month_int == 2 :
+			elif month_int == 2 :
 				header += 'Feb'
-			if month_int == 3 :
+			elif month_int == 3 :
 				header += 'Mar'
-			if month_int == 4 :
+			elif month_int == 4 :
 				header += 'Apr'
-			if month_int == 5 :
+			elif month_int == 5 :
 				header += 'May'
-			if month_int == 6 :
+			elif month_int == 6 :
 				header += 'Jun'
-			if month_int == 7 :
+			elif month_int == 7 :
 				header += 'Jul'
-			if month_int == 8 :
+			elif month_int == 8 :
 				header += 'Aug'
-			if month_int == 9 :
+			elif month_int == 9 :
 				header += 'Sep'
-			if month_int == 10 :
+			elif month_int == 10 :
 				header += 'Oct'
-			if month_int == 11 :
+			elif month_int == 11 :
 				header += 'Nov'
-			if month_int == 12 :
+			elif month_int == 12 :
 				header += 'Dec'
 			header += ' ' + str(exp_date.year) + ' 00:00:00 GMT'
 			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
