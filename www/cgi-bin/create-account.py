@@ -20,6 +20,7 @@ print '''<html>
   <head>
     <title>[final site name]</title>
 	<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+	<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
 	<link rel="stylesheet" type="text/css" href="../css/styles.css">
   </head>
   <body>

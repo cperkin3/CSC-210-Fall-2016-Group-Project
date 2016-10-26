@@ -3,52 +3,55 @@ Authors:
 TODO
 */
 
+body {
+	margin: 0;
+}
+
 nav {
+	border-top: 1px solid white;
 	position: fixed;
-    top: 50px;
+    top: 40px;
     width: 100%;
 	margin: 0;
+	padding: 0;
 }
 
 nav ul {
 	list-style-type: none;
     margin: 0;
     padding: 0;
-	/*background-color: #333;*/
+	background-color: Black;
 	width: 100%;
+	overflow: hidden;
 }
 
 nav li {
-	display: inline-block;
-	/*float: left;*/
-	margin: 0;
-	width: 19%;
-	text-align: center;
+	width: 110px;
+	float: left;
+	border-right: 1px solid white;
 }
 
 nav li:last-child {
-	/*border-right: none;*/
+	border-right: none;
+	float: right;
 }
 
 nav li a {
-	display: inline-block;
-    padding: 10px;
-	margin: 0;
-    background-color: LightBlue;
+	color: white;
+	display: block;
 	text-align: center;
+	padding: 10px 10px;
 	text-decoration: none;
-	
-	border-radius: 25px;
-    border: 1px solid Black;
-	width: 100px;
-    /*width: 200px;
-    height: 150px; */
+}
+
+nav li a:last-child {
+	border-right: none;
 }
 
 nav li a:hover {
-    background-color: LightGreen;
+	background-color: gray;
 }
 
 nav li .current {
-	background-color: LightCyan;
+	background-color: #4CAF50;
 }

@@ -15,6 +15,7 @@ print '''<!doctype html>
 	<head>
 		<title>CSC 210 Project</title>
 		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
 		<link rel="stylesheet" type="text/css" href="../css/styles.css">
 	</head>
 	<body>
