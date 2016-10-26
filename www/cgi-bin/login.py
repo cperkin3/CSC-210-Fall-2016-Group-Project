@@ -97,7 +97,6 @@ if not cook_str :
 				header += 'Dec'
 			header += ' ' + str(exp_date.year) + ' 00:00:00 GMT'
 			content += '<h1>Congratulations, ' + username + ', you have successfully logged in</h1>'
-			content += header
 		else :
 			content += '''<h1>Incorrect password</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
@@ -106,7 +105,10 @@ if not cook_str :
 							<input type="submit" value="Log in!"/>
 					</form>'''
 	else :
+<<<<<<< HEAD
 		content += '<br>'
+=======
+>>>>>>> 1dd04e31d8f88cf9705e44542032bd37d2da5642
 		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
@@ -169,7 +171,10 @@ else :
 							<input type="submit" value="Log in!"/>
 					</form>'''
 	else :
+<<<<<<< HEAD
 		content += '<br>'
+=======
+>>>>>>> 1dd04e31d8f88cf9705e44542032bd37d2da5642
 		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
