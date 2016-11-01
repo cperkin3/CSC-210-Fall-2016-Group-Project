@@ -27,7 +27,7 @@ print '''<html>
 	<header> <!-- All Top-level .html files should have exactly the same header contents -->
 		<div class="login-top">
 		<!-- I want to make this depend on whether or not they have a 'logged in' cookie, but I don't know how -->
-			<form method="POST" action="login.py"">
+			<form method="POST" action="login.py">
 				Login: 
 				Username: <input type="text" name="username" required/> 
 				Password: <input type="password" name="password" required/>TODO: Script
@@ -42,19 +42,19 @@ print '''<html>
     <nav><!-- All Top-level .html files should have exactly the same header contents -->
 		<ul>
 			<li>
-				<a class="current" href="../index.html">Home</a>
+				<a class="current" href="../index.php">Home</a>
 			</li>
 			<li>
-				<a href="../forum.html">Forum</a>
+				<a href="../forum.php">Forum</a>
 			</li>	
 			<li>
-				<a href="../wiki.html">Wiki</a>
+				<a href="../wiki.php">Wiki</a>
 			</li>
 			<li>
-				<a href="../about.html">About</a>
+				<a href="../about.php">About</a>
 			</li>
 			<li>
-				<a href="../user-account.html">User Account</a>
+				<a href="../user-account.php">User Account</a>
 			</li>
 		</ul>
 	</nav>
