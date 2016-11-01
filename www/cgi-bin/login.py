@@ -105,10 +105,6 @@ if not cook_str :
 							<input type="submit" value="Log in!"/>
 					</form>'''
 	else :
-<<<<<<< HEAD
-		content += '<br>'
-=======
->>>>>>> 1dd04e31d8f88cf9705e44542032bd37d2da5642
 		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>
@@ -171,10 +167,6 @@ else :
 							<input type="submit" value="Log in!"/>
 					</form>'''
 	else :
-<<<<<<< HEAD
-		content += '<br>'
-=======
->>>>>>> 1dd04e31d8f88cf9705e44542032bd37d2da5642
 		content += '''<h1>Incorrect username</h1>
 					<form method="POST" action="../cgi-bin/login.py"">
 							Username: <input type="text" name="username" required/> <br>

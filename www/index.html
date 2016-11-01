@@ -2,21 +2,24 @@
 <html>
 	<head>
 		<title>CSC 210 Project</title>
+		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="css/nav-bar.css">
 		<link rel="stylesheet" type="text/css" href="css/login-bar.css">
 		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<!-- JavaScript --> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="js/header.js"></script>
 	</head>
 	<body>
 		<header> <!-- All Top-level .html files should have exactly the same header contents -->
 			<div class="login-top">
-			<!-- I want to make this depend on whether or not they have a 'logged in' cookie, but I don't know how -->
-			<!-- Note to Evan: your above statement is certianly doable, but would require javascript to load/change the html elevments, I think. He did a demo in class about how to have JavaScript talk to the cookie, I think. Don't remember much from it though -->
-				<div class="logged-in">
+				<div id="logged-in">
+					<span id="welcome-name"></span>
 					<form method="POST" action="cgi-bin/logout.py">
 						<input type="submit" value="Log out"/>
 					</form>
 				</div>
-				<div class="logged-out">
+				<div id="logged-out">
 					<form method="POST" action="cgi-bin/login.py">
 						Username: <input type="text" name="username" required/> 
 						Password: <input type="password" name="password" required/>
@@ -24,11 +27,9 @@
 					</form>
 					<a href="html-pages/create-account.html">Create Account</a>
 				</div>
-				
 				<script type="text/javascript">
-					alert("YO!");
+					showHeader();
 				</script>
-				
 			</div>
 		</header>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
