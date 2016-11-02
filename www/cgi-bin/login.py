@@ -117,7 +117,7 @@ if not cook_str :
 elif 'logged_in' in cook_str :
 	cookie = Cookie.SimpleCookie(cook_str)
 	content += '<h1>You are already logged in, ' + cookie['logged_in'].value + '''!</h1>
-					<form method="POST" action="../cgi-bin/logout.py"">
+					<form method="POST" action="logout.py"">
 						<input type="submit" value="Log out"/>
 					</form>'''
 else :
@@ -195,7 +195,7 @@ print '''<!doctype html>
 					<div class="login-top">
 						<div id="logged-in">
 							<span id="welcome-name"></span>
-							<form method="POST" action="cgi-bin/logout.py">
+							<form method="POST" action="logout.py">
 								<input type="submit" value="Log out"/>
 							</form>
 						</div>
