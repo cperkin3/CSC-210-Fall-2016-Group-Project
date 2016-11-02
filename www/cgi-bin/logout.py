@@ -37,7 +37,7 @@ print '''<!doctype html>
 						Password: <input type="password" name="password" required/>
 						<input type="submit" value="Log in!"/>
 					</form>
-					<a href="create-account.html">Create Account</a>
+					<a href="../create-account.html">Create Account</a>
 				</div>
 				<script type="text/javascript">
 					showHeader();
