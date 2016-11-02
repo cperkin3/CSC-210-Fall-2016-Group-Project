@@ -32,7 +32,7 @@ print '''<!doctype html>
 					</form>
 				</div>
 				<div id="logged-out">
-					<form method="POST" action="cgi-bin/login.py">
+					<form method="POST" action="login.py">
 						Username: <input type="text" name="username" required/> 
 						Password: <input type="password" name="password" required/>
 						<input type="submit" value="Log in!"/>
