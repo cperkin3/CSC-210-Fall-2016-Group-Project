@@ -34,7 +34,7 @@
 			<br>
 			<form method="post" action="../cgi-bin/create-account.py">
 				Username: <input type="text" name="username" required/><br/>
-				Password: <input type="text" name="password" required/><br/>
+				Password: <input type="password" name="password" required/><br/>
 				Email: <input type="text" name="email" required/><br/>
 				Birthday: <input type="date" name="birthday" required/><br/>
 				<input type="submit" value="Join!"/>
