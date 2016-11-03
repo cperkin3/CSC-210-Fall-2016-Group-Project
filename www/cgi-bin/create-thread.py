@@ -9,8 +9,12 @@ import mysql.connector
 import datetime 
 import time
 import hashlib
+import Cookie
+import os
 
 cgitb.enable()
+
+cook_str = os.environ.get('HTTP_COOKIE')
 
 new_thread = cgi.FieldStorage()
 
@@ -61,80 +65,93 @@ print '''<html>
 	<BR><BR><BR><BR><BR>
 '''
 
-# Error handling for this?
-conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
-cursor = conn.cursor()
+# If user not logged in, print error and quit program
+if not cook_str :
+	print "Sorry, you must be logged in to create a new thread.\n"
 
-# Grab Entered Data
-category = new_thread['category'].value
-title = new_thread['title'].value
-user = new_thread['user'].value
-content = new_thread['content'].value
-thread_id = 0
+elif 'logged_in' in cook_str :
+	cookie = Cookie.SimpleCookie(cook_str)
 
-# Data Validation
-error_string = ""
-if title == "":
-	error_string += "Error: Title must be filled out.\n"
+	# Error handling for this?
+	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
+	cursor = conn.cursor()
 
-if content == "":
-	error_string += "Error: Content must be filled out.\n"
+	# Grab Entered Data
+	category = new_thread['category'].value
+	title = new_thread['title'].value
+	content = new_thread['content'].value
 
-# If any data invalid, print error and quit program
-if error_string != "":
-	print error_string
-	print '''
-	  </body>
-	</html>
-	'''
-	sys.exit(0)
+	user = cookie['logged_in'].value
+	thread_id = 0
 
-current_time = datetime.datetime.now().date()
+	# Data Validation
+	error_string = ""
+	if title == "":
+		error_string += "Error: Title must be filled out.\n"
 
-thread_query = 'INSERT INTO Forum_Threads (category_name, title, user_created_by, created_datetime) VALUES (%s, %s, %s, %s)'
-post_query = 'INSERT INTO Forum_Posts (thread_id, content, user_post_by, created_datetime) VALUES (%s, %s, %s, %s)'
+	if content == "":
+		error_string += "Error: Content must be filled out.\n"
 
-# Insert Thread
-try:
-	cursor.execute(thread_query, (category, title, user, current_time))
-	conn.commit()
-except:
-	conn.rollback()
-	print """An Error Occured while executing MySQL. Try Re-submitting your information.
-	  </body>
-	</html>"""
-	sys.exit(0)
+	# If any data invalid, print error and quit program
+	if error_string != "":
+		print error_string
+		print '''
+		  </body>
+		</html>
+		'''
+		sys.exit(0)
 
-# Get inserted thread id
-query = 'SELECT id FROM Forum_Threads WHERE title = ' + title + ' AND created_datetime = ' + current_time
+	current_time = datetime.datetime.now().date()
 
-try:
-	cursor.execute(query)
-except:
-	print """An Error Occured while executing MySQL. Try Re-submitting your information.
-	  </body>
-	</html>"""
-	sys.exit(0)
+	thread_query = 'INSERT INTO Forum_Threads (category_name, title, user_created_by, created_datetime) VALUES (%s, %s, %s, %s)'
+	post_query = 'INSERT INTO Forum_Posts (thread_id, content, user_post_by, created_datetime) VALUES (%s, %s, %s, %s)'
 
-data = cursor.fetchall()
-# need to check to make sure only one row
-for row in data :
-	thread_id = row[0]
+	# Insert Thread
+	try:
+		cursor.execute(thread_query, (category, title, user, current_time))
+		conn.commit()
+	except:
+		conn.rollback()
+		print """An Error Occured while executing MySQL. Try Re-submitting your information.
+		  </body>
+		</html>"""
+		sys.exit(0)
 
-# Insert Post
-try:
-	cursor.execute(post_query, (thread_id, content, user, current_time))
-	conn.commit()
-except:
-	conn.rollback()
-	print """An Error Occured while executing MySQL. Try Re-submitting your information.
-	  </body>
-	</html>"""
-	sys.exit(0)
+	# Get inserted thread id
+	query = 'SELECT id FROM Forum_Threads WHERE title = ' + title + ' AND created_datetime = ' + current_time
 
-conn.close()
+	try:
+		cursor.execute(query)
+	except:
+		print """An Error Occured while executing MySQL. Try Re-submitting your information.
+		  </body>
+		</html>"""
+		sys.exit(0)
 
-print "<h1>You have successfully created a new thread.</h1>"
+	data = cursor.fetchall()
+	# need to check to make sure only one row
+	for row in data :
+		thread_id = row[0]
+
+	# Insert Post
+	try:
+		cursor.execute(post_query, (thread_id, content, user, current_time))
+		conn.commit()
+	except:
+		conn.rollback()
+		print """An Error Occured while executing MySQL. Try Re-submitting your information.
+		  </body>
+		</html>"""
+		sys.exit(0)
+
+	conn.close()
+
+	print "<h1>You have successfully created a new thread.</h1>"
+
+# If user not logged in, print error and quit program
+else :
+	print "Sorry, you must be logged in to create a new thread.\n"
+	
 print '''
   </body>
 </html>
