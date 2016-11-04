@@ -39,11 +39,16 @@
 				<li>
 					<a href="">Differences</a>
 				</li>
+				<li>
+					<a href="">Other</a>
+				</li>
 			</ul>
 		</aside>
 		<article>
 			<br><br><br><br>
-			<h1>TODO: Add title</h1>
+			<h1>[Site Title] Forum Home</h1>
+			<p>Welcome to the forum! The goal of this forum is to allow users to post questions and theories, ideally which apply to both the books and the show or that deal with some form of interaction between the two.</p>
+			<p>Users may create new threads and reply to existing threads, but may not create new topic areas. If a thread does not fit in any topic area, put it in 'other'. If you feel there is a major area missing, feel free to contact one of the site managers, found under the 'About' tab.</p>
 		</article>
 		
 		<footer>
