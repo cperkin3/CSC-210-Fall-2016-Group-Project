@@ -101,7 +101,7 @@ elif 'logged_in' in cook_str :
 		'''
 		sys.exit(0)
 
-	current_time = datetime.datetime.now().date()
+	current_time = datetime.datetime.now()
 
 	thread_query = 'INSERT INTO Forum_Threads (category_name, title, user_created_by, created_datetime) VALUES (%s, %s, %s, %s)'
 	post_query = 'INSERT INTO Forum_Posts (thread_id, content, user_post_by, created_datetime) VALUES (%s, %s, %s, %s)'
@@ -118,20 +118,21 @@ elif 'logged_in' in cook_str :
 		sys.exit(0)
 
 	# Get inserted thread id
-	query = 'SELECT id FROM Forum_Threads WHERE title = ' + title + ' AND created_datetime = ' + current_time
+	# TODO MAKE SAFE, MAKE SURE ONLY ONE ROW
+	query = 'SELECT id FROM Forum_Threads WHERE title = \'' + title + '\' AND created_datetime = \'' + str(current_time) + '\''
 
 	try:
 		cursor.execute(query)
+
+		# need to check to make sure only one row
+		row = cursor.fetchone()
+		for tid in row :
+			thread_id = tid
 	except:
 		print """An Error Occured while executing MySQL. Try Re-submitting your information.
 		  </body>
 		</html>"""
 		sys.exit(0)
-
-	data = cursor.fetchall()
-	# need to check to make sure only one row
-	for row in data :
-		thread_id = row[0]
 
 	# Insert Post
 	try:
@@ -139,7 +140,8 @@ elif 'logged_in' in cook_str :
 		conn.commit()
 	except:
 		conn.rollback()
-		print """An Error Occured while executing MySQL. Try Re-submitting your information.
+		print thread_id
+		print """An Error Occured while executing MySQL. Try Re-submitting your information. POST
 		  </body>
 		</html>"""
 		sys.exit(0)

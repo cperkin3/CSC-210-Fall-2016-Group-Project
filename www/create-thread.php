@@ -46,12 +46,35 @@
 			<br>
 			To create a new thread, please enter the following information and click 'Create!'.
 			<br>
-			<form method="post" action="../cgi-bin/create-account.py">
+			<form method="post" action="../cgi-bin/create-thread.py">
 				Category: <select name="category" required>
-					<option value="Characters"/>
+					<?php
+						$servername = "localhost";
+						$username = "root";
+						$password = "mysql";
+						$dbname = "Thrones_Database";
+
+						try {
+							$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+							// Set the PDO error mode to exception
+							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+							$stmt = $conn->prepare("SELECT name FROM Forum_Categories");
+							$stmt->execute();
+
+							while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+								echo "<option value=\"" . $row['name'] . "\"> " . $row['name'] . "</option>";
+							}
+
+						} catch (PDOException $e) {
+							echo "Error: " . $e->getMessage() . "<br/>";
+							die();
+						}
+					?>
 				</select>
 				Title: <input type="text" name="title" required/><br/>
-				Content: <input type="text" name="content" required/><br/>
+				Content: <input type="textarea" name="content" required/><br/>
 				<input type="submit" value="Create!"/>
 			</form>
 		</article>
