@@ -18,7 +18,7 @@
 				<form method="POST" action="../cgi-bin/logout.py">
 					<input type="submit" value="Log out"/>
 				</form>
-				<a href="html-pages/create-thread.html">Create Thread</a>
+				<a href="html-pages/create-thread.php">Create Thread</a>
 			</div>
 		</header>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
