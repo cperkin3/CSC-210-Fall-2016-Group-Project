@@ -66,10 +66,10 @@ print '''<html>
 '''
 
 # If user not logged in, print error and quit program
-if not cook_str :
+if not cook_str:
 	print "Sorry, you must be logged in to create a new thread.\n"
 
-elif 'logged_in' in cook_str :
+elif 'logged_in' in cook_str:
 	cookie = Cookie.SimpleCookie(cook_str)
 
 	# Error handling for this?
@@ -106,42 +106,22 @@ elif 'logged_in' in cook_str :
 	thread_query = 'INSERT INTO Forum_Threads (category_name, title, user_created_by, created_datetime) VALUES (%s, %s, %s, %s)'
 	post_query = 'INSERT INTO Forum_Posts (thread_id, content, user_post_by, created_datetime) VALUES (%s, %s, %s, %s)'
 
-	# Insert Thread
 	try:
+		# Insert thread
 		cursor.execute(thread_query, (category, title, user, current_time))
-		conn.commit()
-	except:
-		conn.rollback()
-		print """An Error Occured while executing MySQL. Try Re-submitting your information.
-		  </body>
-		</html>"""
-		sys.exit(0)
-
-	# Get inserted thread id
-	# TODO MAKE SAFE, MAKE SURE ONLY ONE ROW
-	query = 'SELECT id FROM Forum_Threads WHERE title = \'' + title + '\' AND created_datetime = \'' + str(current_time) + '\''
-
-	try:
-		cursor.execute(query)
-
-		# need to check to make sure only one row
+		
+		# Get inserted thread id
+		cursor.execute('SELECT LAST_INSERT_ID()')
 		row = cursor.fetchone()
-		for tid in row :
-			thread_id = tid
-	except:
-		print """An Error Occured while executing MySQL. Try Re-submitting your information.
-		  </body>
-		</html>"""
-		sys.exit(0)
+		thread_id = row[0]
 
-	# Insert Post
-	try:
+		# Insert post
 		cursor.execute(post_query, (thread_id, content, user, current_time))
+
 		conn.commit()
 	except:
 		conn.rollback()
-		print thread_id
-		print """An Error Occured while executing MySQL. Try Re-submitting your information. POST
+		print """An Error Occured while executing MySQL. Try Re-submitting your information. INSERT
 		  </body>
 		</html>"""
 		sys.exit(0)
@@ -151,7 +131,7 @@ elif 'logged_in' in cook_str :
 	print "<h1>You have successfully created a new thread.</h1>"
 
 # If user not logged in, print error and quit program
-else :
+else:
 	print "Sorry, you must be logged in to create a new thread.\n"
 	
 print '''

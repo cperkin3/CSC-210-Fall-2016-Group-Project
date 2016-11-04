@@ -60,7 +60,7 @@
 							// Set the PDO error mode to exception
 							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-							$stmt = $conn->prepare("SELECT name FROM Forum_Categories");
+							$stmt = $conn->prepare('SELECT name FROM Forum_Categories;');
 							$stmt->execute();
 
 							while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
