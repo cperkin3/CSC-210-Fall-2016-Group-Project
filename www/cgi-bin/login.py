@@ -24,7 +24,7 @@ if not cook_str :
 	conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
 	cursor = conn.cursor()
 	
-	query = 'SELECT COUNT(*) FROM Users WHERE username=%s;'
+	query = 'SELECT EXISTS (SELECT * FROM Users WHERE username=%s);'
 
 	cursor.execute(query, (username,))
 	
@@ -32,24 +32,18 @@ if not cook_str :
 	
 	if row[0] == 1 :
 		
-		query = 'SELECT join_date FROM Users WHERE username=%s'
+		query = 'SELECT join_date, password FROM Users WHERE username=%s'
 		cursor.execute(query, (username,))
 		
 		row = cursor.fetchone()
-		for key in row :
-			salt = str(key)
+		salt = str(row[0])
 		
 		hasher = hashlib.md5()
 		hasher.update(password)
 		hasher.update(salt)
 		encrypted_password = hasher.hexdigest()
 		
-		query = 'SELECT password FROM Users WHERE username=%s'
-		cursor.execute(query, (username,))
-		row = cursor.fetchone()
-		
-		for key in row :
-			attempt_password = str(key)
+		attempt_password = str(row[1])
 		
 		if attempt_password == encrypted_password :
 			exp_date = (datetime.datetime.now().date() + datetime.timedelta(30))
