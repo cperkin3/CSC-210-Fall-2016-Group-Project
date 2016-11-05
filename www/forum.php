@@ -31,16 +31,16 @@
 					<a href="">Forum Home</a>
 				</li>
 				<li>
-					<a href="">General</a>
+					<a href="forum/general.php">General</a>
 				</li>
 				<li>
-					<a href="">Characters</a>
+					<a href="forum/characters.php">Characters</a>
 				</li>
 				<li>
-					<a href="">Differences</a>
+					<a href="forum/differences.php">Differences</a>
 				</li>
 				<li>
-					<a href="">Other</a>
+					<a href="forum/other.php">Other</a>
 				</li>
 			</ul>
 		</aside>

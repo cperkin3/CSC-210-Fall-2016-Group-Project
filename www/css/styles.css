@@ -59,3 +59,7 @@ article {
 	
 	top: 80px;
 }
+
+tbody tr:nth-child(odd) {
+  background: #eee;
+}
