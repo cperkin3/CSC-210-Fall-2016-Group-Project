@@ -1,0 +1,33 @@
+
+
+table {
+	border-collapse: collapse;
+	background: black;
+	color: white;
+	border: 1px solid white;
+	width: 100%;
+}
+
+th {
+	border: 1px solid white;
+	height: 50px;
+}
+
+th:first-child, td:first-child {
+	width: 50%;
+}
+
+td {
+	border: 1px solid white;
+	padding: 10px;
+}
+
+tbody tr:hover {
+	background: gray;
+}
+
+tr a {
+	display: block;
+	color: white;
+	text-decoration: none;
+}

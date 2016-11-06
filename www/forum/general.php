@@ -6,6 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
 		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
 		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../css/forum-table.css">
 		<!-- JavaScript --> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="../js/header.js"></script>
@@ -98,8 +99,7 @@
 								$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 								// Query the database
-								// Incorrect query, for now
-								$stmt = $conn->prepare('SELECT title, thread_id, user_created_by, Forum_Threads.created_datetime, MAX(Forum_Posts.created_datetime) FROM Forum_Posts INNER JOIN Forum_Threads WHERE category_name="General" GROUP BY thread_id ORDER BY Forum_Posts.created_datetime DESC;');
+								$stmt = $conn->prepare('SELECT title, thread_id, user_created_by, Forum_Threads.created_datetime, MAX(Forum_Posts.created_datetime) FROM Forum_Posts INNER JOIN Forum_Threads WHERE category_name="General" AND thread_id=Forum_Threads.id GROUP BY thread_id ORDER BY Forum_Posts.created_datetime DESC;');
 								$stmt->execute();
 								
 								// Display each result
