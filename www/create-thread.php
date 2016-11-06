@@ -2,25 +2,10 @@
 <html>
 	<head>
 		<title>CSC 210 Project</title>
-		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
-		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">	
-		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<?php include("includes/imports.html");?>
 	</head>
 	<body>
-		<header> <!-- All Top-level .html files should have exactly the same header contents -->
-			<div class="login-top">
-			<!-- I want to make this depend on whether or not they have a 'logged in' cookie, but I don't know how -->
-				<form method="POST" action="../cgi-bin/login.py">
-					Username: <input type="text" name="username" required/> 
-					Password: <input type="password" name="password" required/>
-					<input type="submit" value="Log in!"/>
-				</form>
-				<form method="POST" action="../cgi-bin/logout.py">
-					<input type="submit" value="Log out"/>
-				</form>
-				<a href="html-pages/create-thread.php">Create Thread</a>
-			</div>
-		</header>
+		<?php include("includes/header.html");?>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
 			<ul>
 				<li>
@@ -40,6 +25,28 @@
 				</li>
 			</ul>
 		</nav>
+		<aside class="nav-aside">
+			<ul>
+				<li>
+					<a href="">Forum Home</a>
+				</li>
+				<li>
+					<a href="forum/general.php">General</a>
+				</li>
+				<li>
+					<a href="forum/characters.php">Characters</a>
+				</li>
+				<li>
+					<a href="forum/differences.php">Differences</a>
+				</li>
+				<li>
+					<a href="forum/other.php">Other</a>
+				</li>
+				<li>
+					<a href="create-thread.php">Create New Thread</a>
+				</li>
+			</ul>
+		</aside>
 		<article>
 			<BR><BR><BR><BR>
 			<h1>Create New Thread</h1>
