@@ -82,7 +82,7 @@
 			Here is the most recent activity on this board:<br><!-- TODO : Ask Chris for CSS help on this table. I can't seem to get it to do anything -->
 			<table>
 				<thead>
-					<th>Post name</th>
+					<th>Thread Title</th>
 					<th>Author</th>
 					<th>Created</th>
 					<th>Last Reply</th>
