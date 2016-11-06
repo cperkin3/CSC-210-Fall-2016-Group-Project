@@ -70,6 +70,9 @@
 				<li>
 					<a href="other.php">Other</a>
 				</li>
+				<li>
+					<a href="../create-thread.php">Create New Thread</a>
+				</li>
 			</ul>
 		</aside>
 		<article>
