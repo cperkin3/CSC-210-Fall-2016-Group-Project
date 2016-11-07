@@ -56,6 +56,9 @@ aside.nav-aside li a {
 }
 
 article {
-	
 	top: 80px;
+	
+	position: fixed;
+	left: 200px;
+	padding: 10px;
 }
