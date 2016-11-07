@@ -75,8 +75,7 @@
 				</li>
 			</ul>
 		</aside>
-		<article>
-			<br><br><br><br>
+		<article class="forum">
 			<h1>General Discussion</h1>
 			This is a forum intended discussion of specific characters.<br>
 			Here is the most recent activity on this board:<br><!-- TODO : Ask Chris for CSS help on this table. I can't seem to get it to do anything -->

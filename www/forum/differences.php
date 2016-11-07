@@ -74,8 +74,7 @@
 				</li>
 			</ul>
 		</aside>
-		<article>
-			<br><br><br><br>
+		<article class="forum">
 			<h1>General Discussion</h1>
 			This is a forum intended for discussion of the differences between the GoT and ASoiaF franchises.<br>
 			Here is the most recent activity on this board:<br>

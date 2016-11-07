@@ -12,7 +12,7 @@
 					<a href="../index.php">Home</a>
 				</li>
 				<li>
-					<a href="../forum.php">Forum</a>
+					<a class="current" href="../forum.php">Forum</a>
 				</li>	
 				<li>
 					<a href="../wiki.php">Wiki</a>
@@ -47,8 +47,7 @@
 				</li>
 			</ul>
 		</aside>
-		<article>
-			<BR><BR><BR><BR>
+		<article class="forum">
 			<h1>Create New Thread</h1>
 			<br>
 			To create a new thread, please enter the following information and click 'Create!'.

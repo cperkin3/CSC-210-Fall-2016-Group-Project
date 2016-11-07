@@ -26,7 +26,6 @@
 			</ul>
 		</nav>
 		<article>
-			<br><br><br><br>
 			<h1>TODO: Add title</h1>
 		</article>
 		<aside>

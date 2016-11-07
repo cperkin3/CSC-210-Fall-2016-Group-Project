@@ -74,12 +74,10 @@
 				</li>
 			</ul>
 		</aside>
-		<article>
-			<br><br><br><br>
+		<article class="forum">
 			<h1>General Discussion</h1>
 			This is a forum intended for miscellaneous discussion, including, but not limited to, the GOT/ASoiaF franchise, meta-discussion, etc.<br>
 			Here is the most recent activity on this board:<br>
-			<!-- TODO : Ask Chris for CSS help on this table. I can't seem to get it to do anything -->
 			<table>
 				<thead>
 					<th>Thread Title</th>

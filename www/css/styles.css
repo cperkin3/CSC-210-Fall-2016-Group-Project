@@ -56,9 +56,13 @@ aside.nav-aside li a {
 }
 
 article {
-	top: 80px;
-	
 	position: fixed;
+	top: 80px;
+	width: 100%;
+}
+
+article.forum {
 	left: 200px;
 	padding: 10px;
+	width: auto;
 }

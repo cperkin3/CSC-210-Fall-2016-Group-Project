@@ -74,8 +74,7 @@
 				</li>
 			</ul>
 		</aside>
-		<article>
-			<br><br><br><br>
+		<article class="forum">
 			<h1>General Discussion</h1>
 			This is a forum intended for general discussion of the GoT/ASoiaF franchise, including, but not limited to, overlaps between the two, fan theories, etc.<br>
 			Here is the most recent activity on this board:<br>
