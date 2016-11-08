@@ -75,7 +75,7 @@
 			</ul>
 		</aside>
 		<article class="forum">
-			<h1>General Discussion</h1>
+			<h1>Differences Discussion</h1>
 			This is a forum intended for discussion of the differences between the GoT and ASoiaF franchises.<br>
 			Here is the most recent activity on this board:<br>
 			<!-- TODO : Ask Chris for CSS help on this table. I can't seem to get it to do anything -->
@@ -108,7 +108,8 @@
 								while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 									// TODO : Find out where links need to go
 									echo "<tr>";
-									echo "<td><a href=\"" . $row['title'] . "\"> " . $row['title'] . "</a></td>";
+									//echo "<td><a href=\"" . $row['title'] . "\"> " . $row['title'] . "</a></td>";
+									echo "<to>" . $row['title'] . "</td>";
 									echo "<td>" . $row['user_created_by'] . "</td>";
 									echo "<td>" . $row['created_datetime'] . "</td>";
 									echo "<td>" . $row['MAX(Forum_Posts.created_datetime)'] . "</td>";

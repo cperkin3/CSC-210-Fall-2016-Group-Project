@@ -75,7 +75,7 @@
 			</ul>
 		</aside>
 		<article class="forum">
-			<h1>General Discussion</h1>
+			<h1>Other Discussion</h1>
 			This is a forum intended for miscellaneous discussion, including, but not limited to, the GOT/ASoiaF franchise, meta-discussion, etc.<br>
 			Here is the most recent activity on this board:<br>
 			<table>
@@ -107,7 +107,8 @@
 								while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 									// TODO : Find out where links need to go
 									echo "<tr>";
-									echo "<td><a href=\"" . $row['thread_id'] . "\"> " . $row['title'] . "</a></td>";
+									//echo "<td><a href=\"" . $row['thread_id'] . "\"> " . $row['title'] . "</a></td>";
+									echo "<to>" . $row['title'] . "</td>";
 									echo "<td>" . $row['user_created_by'] . "</td>";	// Are profiles publicly viewable? If so, insert a link here
 									echo "<td>" . $row['created_datetime'] . "</td>";
 									echo "<td>" . $row['MAX(Forum_Posts.created_datetime)'] . "</td>";
