@@ -56,10 +56,10 @@ print '''<html>
     <nav><!-- All Top-level .html files should have exactly the same header contents -->
 		<ul>
 			<li>
-				<a class="current" href="../index.php">Home</a>
+				<a href="../index.php">Home</a>
 			</li>
 			<li>
-				<a href="../forum.php">Forum</a>
+				<a class="current" href="../forum.php">Forum</a>
 			</li>	
 			<li>
 				<a href="../wiki.php">Wiki</a>
