@@ -108,7 +108,7 @@
 									// TODO : Find out where links need to go
 									echo "<tr>";
 									//echo "<td><a href=\"" . $row['thread_id'] . "\"> " . $row['title'] . "</a></td>";
-									echo "<to>" . $row['title'] . "</td>";
+									echo "<td>" . $row['title'] . "</td>";
 									echo "<td>" . $row['user_created_by'] . "</td>";	// Are profiles publicly viewable? If so, insert a link here
 									echo "<td>" . $row['created_datetime'] . "</td>";
 									echo "<td>" . $row['MAX(Forum_Posts.created_datetime)'] . "</td>";

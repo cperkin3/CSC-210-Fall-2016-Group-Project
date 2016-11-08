@@ -109,7 +109,7 @@
 									// TODO : Find out where links need to go
 									echo "<tr>";
 									//echo "<td><a href=\"" . $row['title'] . "\"> " . $row['title'] . "</a></td>";
-									echo "<to>" . $row['title'] . "</td>";
+									echo "<td>" . $row['title'] . "</td>";
 									echo "<td>" . $row['user_created_by'] . "</td>";
 									echo "<td>" . $row['created_datetime'] . "</td>";
 									echo "<td>" . $row['MAX(Forum_Posts.created_datetime)'] . "</td>";
