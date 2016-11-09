@@ -28,19 +28,19 @@
 		<aside class="nav-aside">
 			<ul>
 				<li>
-					<a href="">Forum Home</a>
+					<a href="forum.php">Forum Home</a>
 				</li>
 				<li>
-					<a href="forum/general.php">General</a>
+					<a href="forum/view_category.php?category=General">General</a>
 				</li>
 				<li>
-					<a href="forum/characters.php">Characters</a>
+					<a href="forum/view_category.php?category=Characters">Characters</a>
 				</li>
 				<li>
-					<a href="forum/differences.php">Differences</a>
+					<a href="forum/view_category.php?category=Differences">Differences</a>
 				</li>
 				<li>
-					<a href="forum/other.php">Other</a>
+					<a href="forum/view_category.php?category=Other">Other</a>
 				</li>
 				<li>
 					<a href="create-thread.php">Create New Thread</a>
