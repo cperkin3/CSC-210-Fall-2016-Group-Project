@@ -20,7 +20,7 @@ CREATE TABLE IF NOT EXISTS Forum_Categories (
 CREATE TABLE IF NOT EXISTS Forum_Threads (
 	id						INT AUTO_INCREMENT PRIMARY KEY,
 	category_name			CHAR(40), -- foreign key
-	title					CHAR(40) NOT NULL,
+	title					CHAR(100) NOT NULL,
 	user_created_by			CHAR(40) NOT NULL, -- foreign key
 	created_datetime		DATETIME NOT NULL, -- automatically populated
 

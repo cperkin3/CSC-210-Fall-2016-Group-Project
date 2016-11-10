@@ -99,6 +99,9 @@ elif 'logged_in' in cook_str:
 	if title == "":
 		error_string += "Error: Title must be filled out.\n"
 
+	if len(title) > 100:
+		error_string += "Error: Title must be 100 characters or less.\n"
+
 	if content == "":
 		error_string += "Error: Content must be filled out.\n"
 

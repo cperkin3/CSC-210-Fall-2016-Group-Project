@@ -80,7 +80,7 @@
 					?>
 				</select>
 				Title: <input type="text" name="title" required/><br/>
-				Content: <input type="textarea" name="content" required/><br/>
+				Post Content: <textarea cols="40" rows="5" name="content" required></textarea><br/>
 				<input type="submit" value="Create!"/>
 			</form>
 		</article>
