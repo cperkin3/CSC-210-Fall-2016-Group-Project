@@ -25,51 +25,21 @@ try {
 	$stmt = $conn->prepare("SELECT * FROM `Forum_Posts` WHERE thread_id=$thread_id ORDER BY created_datetime ASC");
 	$stmt->execute();
 
+	// Get original post with all replies in the thread
 	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		echo "<option value=\"" . $row['name'] . "\"> " . $row['name'] . "</option>";
-
 		$post_author = $row["user_post_by"];
 		$date_time = $row["created_datetime"];
 		$date_time = strftime("%b %d, %Y", strtotime($date_time));
 		$thread_title = $row["title"];
 		$post_content = $row["content"];
 
-		echo "<a1> Post by: $post_author </a1>"
+		echo "<a1> Post by: $post_author </a1>";
 	}
 
 } catch (PDOException $e) {
 	echo "Error: " . $e->getMessage() . "<br/>";
 	die();
 }
-
-// Get the "id" URL variable and query the database for the original post of this thread
-
-
-
-/*$sql = mysql_query("SELECT * FROM Forum_Posts WHERE id='$thread_id' AND type='a' LIMIT 1");
-
-$numRows = mysql_num_rows($sql);
-
-if ($numRows < 1) {
-	echo "ERROR: That thread does not exist.";
-	exit();
-}*/
-
-//acess variables for first original post
-
-/*while($row = mysql_fetch_array($sql)){
-	$post_author = $row["user_post_by"];
-	//$post_author_id = $row["post_author_id"];
-	$date_time = $row["created_datetime"];
-	$date_time = strftime("%b %d, %Y", strtotime($date_time));
-	//$section_title = $row["section_title"];
-	//$section_id = $row["section_id"];
-	$thread_title = $row["title"];
-
-	$post_body = $row["content"];
-
-}*/
-
 ?>
 
 <?php 
