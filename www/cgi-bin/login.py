@@ -212,7 +212,7 @@ print '''<!doctype html>
 							<a href="../index.php">Home</a>
 						</li>
 						<li>
-							<a href="../forum.php">Forum</a>
+							<a href="../forum/forum.php">Forum</a>
 						</li>	
 						<li>
 							<a href="../wiki.php">Wiki</a>
