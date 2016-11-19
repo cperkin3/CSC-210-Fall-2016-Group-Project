@@ -6,12 +6,32 @@
 		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
 		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
 		<link rel="stylesheet" type="text/css" href="../css/styles.css">
-		<!-- JavaScript --> 
+		<!-- JavaScript -->
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="../js/header.js"></script>	
 	</head>
 	<body>
-		<?php include("../includes/header.html");?>
+		<head>
+			<div class="login-top">
+				<div id="logged-in">
+					<span id="welcome-name"></span>
+					<form method="POST" action="../cgi-bin/logout.py">
+						<input type="submit" value="Log out"/>
+					</form>
+				</div>
+				<div id="logged-out">
+					<form method="POST" action="../cgi-bin/login.py">
+						Username: <input type="text" name="username" required/> 
+						Password: <input type="password" name="password" required/>
+						<input type="submit" value="Log in!"/>
+					</form>
+					<a href="../create-account.php">Create Account</a>
+				</div>
+				<script type="text/javascript">
+					showHeader();
+				</script>
+			</div>
+		</head>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
 			<ul>
 				<li>
