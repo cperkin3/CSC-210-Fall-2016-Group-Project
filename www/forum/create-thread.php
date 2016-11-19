@@ -31,16 +31,16 @@
 					<a href="forum.php">Forum Home</a>
 				</li>
 				<li>
-					<a href="forum/view_category.php?category=General">General</a>
+					<a href="view_category.php?category=General">General</a>
 				</li>
 				<li>
-					<a href="forum/view_category.php?category=Characters">Characters</a>
+					<a href="view_category.php?category=Characters">Characters</a>
 				</li>
 				<li>
-					<a href="forum/view_category.php?category=Differences">Differences</a>
+					<a href="view_category.php?category=Differences">Differences</a>
 				</li>
 				<li>
-					<a href="forum/view_category.php?category=Other">Other</a>
+					<a href="view_category.php?category=Other">Other</a>
 				</li>
 				<li>
 					<a href="create-thread.php">Create New Thread</a>
