@@ -39,7 +39,7 @@
 					<a href="../index.php">Home</a>
 				</li>
 				<li>
-					<a class="current" href="../forum.php">Forum</a>
+					<a class="current" href="forum.php">Forum</a>
 				</li>	
 				<li>
 					<a href="../wiki.php">Wiki</a>
@@ -55,7 +55,7 @@
 		<aside class="nav-aside">
 			<ul>
 				<li>
-					<a href="../forum.php">Forum Home</a>
+					<a href="forum.php">Forum Home</a>
 				</li>
 				<li>
 					<a href="view_category.php?category=General">General</a>
@@ -70,7 +70,7 @@
 					<a href="view_category.php?category=Other">Other</a>
 				</li>
 				<li>
-					<a href="../../create-thread.php">Create New Thread</a>
+					<a href="create-thread.php">Create New Thread</a>
 				</li>
 			</ul>
 		</aside>
