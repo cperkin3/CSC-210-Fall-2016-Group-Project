@@ -22,18 +22,34 @@ try {
 	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 	// Set the PDO error mode to exception
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-	$stmt = $conn->prepare("SELECT * FROM `Forum_Posts` WHERE thread_id=$thread_id ORDER BY created_datetime ASC");
+
+	// Get thread title
+	$stmt = $conn->prepare("SELECT title FROM Forum_Threads WHERE id = $thread_id");
 	$stmt->execute();
 
+	$thread_title = "";
+	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+		$thread_title = $row["title"];
+	}
+
 	// Get original post with all replies in the thread
+	$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
+	$stmt->execute();
+
 	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		$post_author = $row["user_post_by"];
 		$date_time = $row["created_datetime"];
-		$date_time = strftime("%b %d, %Y", strtotime($date_time));
-		$thread_title = $row["title"];
+		//$date_time = strftime("%b %d, %Y", strtotime($date_time));
 		$post_content = $row["content"];
 
-		echo "<a1> Post by: $post_author </a1>";
+		echo "<a1>Post by: $post_author</a1>";
+		echo "<a2>Datetime: $date_time</a2>";
+		echo "<a3>Thread title: $thread_title</a3>";
+		echo "<a4>Post content: $post_content</a4>";
+
+		echo '<div class="response_div">Re: ' . $thread_title . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $date_time . ' 
+		<a href="../profile.php?id=' . $post_author . '">' . $post_author . '</a> said:</div>
+		<div class="response_div">' . $post_content . '</div>';
 	}
 
 } catch (PDOException $e) {
@@ -43,32 +59,7 @@ try {
 ?>
 
 <?php 
-
-// Now query any responses out of the database and place in a dynamic list
-$all_responses = "";
-$sql = mysql_query("SELECT * FROM Forum_Posts WHERE otid='$thread_id' AND type='b'");
-$numRows = mysql_num_rows($sql);
-
-if ($numRows < 1) {
-	$all_responses = '<div id="none_yet_div">Nobody has responded to this yet, be the first to reply!.</div>';
-} else {
-    while($row = mysql_fetch_array($sql)){
-	$reply_author = $row["user_post_by"];
-	//$reply_author_id = $row["post_author_id"];
-	$date_n_time = $row["created_datetime"];
-	$convertedTime = ($myAgoObject -> convert_datetime($date_n_time));
-    $whenReply = ($myAgoObject -> makeAgo($convertedTime));
-	$reply_body = $row["content"];
-	$all_responses .= '<div class="response_top_div">Re: ' . $thread_title . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $whenReply . ' 
-	<a href="../profile.php?id=' . $reply_author_id . '">' . $reply_author . '</a> said:</div>
-	<div class="response_div">' . $reply_body . '</div>';
-   }
-}
-
-?>
-
-<?php 
-
+/*
 // Be sure the user session vars are all set in order to show them the "replyButton"
 $replyButton = 'You must <a href="../login.py">Log In</a> to respond';
 
@@ -87,7 +78,7 @@ $numRows = mysql_num_rows($sql);
 if ($numRows < 1) {
 	   $replyButton = 'You Must <a href="../login.py">Log In</a> to Respond';
 }
-
+*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -190,8 +181,6 @@ function parseResponse ( ) {
 
 <body>
 
-<?php include_once(""); ?>
-
 <table style="background-color: #F0F0F0; border:#069 1px solid; border-top:none;" width="900" border="0" align="center" cellpadding="12" cellspacing="0">
 
   <tr>
@@ -258,8 +247,6 @@ function parseResponse ( ) {
     </div></td>
   </tr>
 </table>
-
-<?php include_once(""); ?>
 
 </body>
 
