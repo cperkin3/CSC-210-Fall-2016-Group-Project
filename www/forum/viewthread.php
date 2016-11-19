@@ -32,6 +32,8 @@ try {
 		$thread_title = $row["title"];
 	}
 
+	echo "<h2>$thread_title</h2>";
+
 	// Get original post with all replies in the thread
 	$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
 	$stmt->execute();
@@ -42,13 +44,8 @@ try {
 		//$date_time = strftime("%b %d, %Y", strtotime($date_time));
 		$post_content = $row["content"];
 
-		echo "<a1>Post by: $post_author</a1>";
-		echo "<a2>Datetime: $date_time</a2>";
-		echo "<a3>Thread title: $thread_title</a3>";
-		echo "<a4>Post content: $post_content</a4>";
-
-		echo '<div class="response_div">Re: ' . $thread_title . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $date_time . ' 
-		<a href="../profile.php?id=' . $post_author . '">' . $post_author . '</a> said:</div>
+		echo '<div class="response_top_div">' . $date_time .
+		' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
 		<div class="response_div">' . $post_content . '</div>';
 	}
 
