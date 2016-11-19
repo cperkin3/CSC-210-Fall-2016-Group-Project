@@ -2,17 +2,23 @@
 <html>
 	<head>
 		<title>CSC 210 Project</title>
-		<?php include("includes/imports.html");?>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<!-- JavaScript --> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="../js/header.js"></script>
 	</head>
 	<body>
-		<?php include("includes/header.html");?>
+		<?php include("../includes/header.html");?>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
 			<ul>
 				<li>
 					<a href="../index.php">Home</a>
 				</li>
 				<li>
-					<a class="current" href="../forum.php">Forum</a>
+					<a class="current" href="forum.php">Forum</a>
 				</li>	
 				<li>
 					<a href="../wiki.php">Wiki</a>
@@ -31,16 +37,16 @@
 					<a href="forum.php">Forum Home</a>
 				</li>
 				<li>
-					<a href="view_category.php?category=General">General</a>
+					<a href="forum/view_category.php?category=General">General</a>
 				</li>
 				<li>
-					<a href="view_category.php?category=Characters">Characters</a>
+					<a href="forum/view_category.php?category=Characters">Characters</a>
 				</li>
 				<li>
-					<a href="view_category.php?category=Differences">Differences</a>
+					<a href="forum/view_category.php?category=Differences">Differences</a>
 				</li>
 				<li>
-					<a href="view_category.php?category=Other">Other</a>
+					<a href="forum/view_category.php?category=Other">Other</a>
 				</li>
 				<li>
 					<a href="create-thread.php">Create New Thread</a>
