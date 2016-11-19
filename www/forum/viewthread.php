@@ -1,40 +1,18 @@
 <?php
-
 session_start();
-
 #include_once "../scripts/connect_to_mysql.php"; // Connect to the database
 // Connect to the class file for converting date_time to "Ago" format
 include_once ("agoTimeFormat.php");
 $myAgoObject = new convertToAgo; // Establish the object
-
-//connect to thrones database
-$servername = "localhost";
-						$username = "root";
-						$password = "mysql";
-						$dbname = "Thrones_Database";
-
-
-try {
-							$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-
-							// Set the PDO error mode to exception
-							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-							$stmt = $conn->prepare('SELECT name FROM Forum_Categories;');
-							$stmt->execute();
-
-							while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-								echo "<option value=\"" . $row['name'] . "\"> " . $row['name'] . "</option>";
-							}
-
-						} catch (PDOException $e) {
-							echo "Error: " . $e->getMessage() . "<br/>";
-							die();
-						}
-					
-				
-
-
+//connect to thrones database
+$servername = "localhost";
+$username = "root";$password = "mysql";$dbname = "Thrones_Database";
+
+try {
+	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);	// Set the PDO error mode to exception	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);	$stmt = $conn->prepare('SELECT * FROM `Forum_Posts` WHERE thread_id=2 ORDER BY created_datetime ASC');	$stmt->execute();
+	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {		echo "<option value=\"" . $row['name'] . "\"> " . $row['name'] . "</option>";	}
+} catch (PDOException $e) {	echo "Error: " . $e->getMessage() . "<br/>";	die();
+}
 
 // Get the "id" URL variable and query the database for the original post of this thread
 $thread_id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
