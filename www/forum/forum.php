@@ -11,7 +11,7 @@
 		<script src="../js/header.js"></script>	
 	</head>
 	<body>
-		<head>
+		<header>
 			<div class="login-top">
 				<div id="logged-in">
 					<span id="welcome-name"></span>
@@ -31,7 +31,7 @@
 					showHeader();
 				</script>
 			</div>
-		</head>
+		</header>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
 			<ul>
 				<li>
