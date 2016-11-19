@@ -1,7 +1,7 @@
 <!doctype html>
 <html>
 	<head>
-		<title>General Discussion</title>
+		<title>CSC 210 Project</title>
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
 		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
