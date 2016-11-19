@@ -1,9 +1,9 @@
 <?php
 
 session_start();
-include_once "../scripts/connect_to_mysql.php"; // Connect to the database
+#include_once "../scripts/connect_to_mysql.php"; // Connect to the database
 // Connect to the class file for converting date_time to "Ago" format
-include_once ("../wi_class_files/agoTimeFormat.php");
+include_once ("agoTimeFormat.php");
 $myAgoObject = new convertToAgo; // Establish the object
 
 // Get the "id" URL variable and query the database for the original post of this thread
