@@ -2,26 +2,32 @@
 <html>
 	<head>
 		<title>CSC 210 Project</title>
-		<?php include("includes/imports.html");?>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<!-- JavaScript --> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="../js/header.js"></script>	
 	</head>
 	<body>
-		<?php include("includes/header.html");?>
+		<?php include("../includes/header.html");?>
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
 			<ul>
 				<li>
-					<a href="index.php">Home</a>
+					<a href="../index.php">Home</a>
 				</li>
 				<li>
 					<a class="current" href="forum.php">Forum</a>
 				</li>	
 				<li>
-					<a href="wiki.php">Wiki</a>
+					<a href="../wiki.php">Wiki</a>
 				</li>
 				<li>
-					<a href="about.php">About</a>
+					<a href="../about.php">About</a>
 				</li>
 				<li>
-					<a href="user-account.php">User Account</a>
+					<a href="../user-account.php">User Account</a>
 				</li>
 			</ul>
 		</nav>
