@@ -2,8 +2,6 @@
 
 session_start();
 
-#include_once "../scripts/connect_to_mysql.php"; // Connect to the database
-
 // Connect to the class file for converting date_time to "Ago" format
 
 include_once ("agoTimeFormat.php");
@@ -44,8 +42,7 @@ try {
 		//$date_time = strftime("%b %d, %Y", strtotime($date_time));
 		$post_content = $row["content"];
 
-		echo '<div class="response_top_div">' . $date_time .
-		' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
+		echo '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
 		<div class="response_div">' . $post_content . '</div>';
 	}
 
@@ -81,10 +78,19 @@ if ($numRows < 1) {
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+	<title>CSC 210 Project</title>
+	<!-- CSS -->
+	<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+	<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
+	<link rel="stylesheet" type="text/css" href="../css/styles.css">
+	<link rel="stylesheet" type="text/css" href="../css/viewthread.css">
+	<!-- JavaScript --> 
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<script src="../js/header.js"></script>
+
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <link href="style/style.css" rel="stylesheet" type="text/css" />
 <script src="../js/jquery-1.4.2.js" type="text/javascript"></script>
-<title><?php echo $thread_title; ?></title>
 <script language="javascript" type="text/javascript">
 
 //jquery
@@ -139,44 +145,50 @@ function parseResponse ( ) {
 
 </script>
 
-<style type="text/css">
-.topic_div {
-	background-color: white;
-	border: solid black 1px;
-	font: 14px black;
-	padding:5px;
-	margin-bottom: 7px;
-}
-
-.response_top_div {
-	background-color: black;
-	font-size:12px;
-	color: white;
-	padding:4px;
-	border: solid black 1px;
-}
-
-.response_div {
-	background-color: #FFF;
-	font-size:12px;
-	padding:7px;
-	border: solid black 1px;
-	margin-bottom:7px;
-}
-
-#none_yet_div {
-	background-color: #white;
-	font-size:14px;
-	padding:16px;
-	border: #black 1px solid;
-	margin-bottom:6px;
-	color: black;
-}
-</style>
-
 </head>
 
 <body>
+
+	<header> 
+		<div class="login-top">
+			<div id="logged-in">
+				<span id="welcome-name"></span>
+				<form method="POST" action="../cgi-bin/logout.py">
+					<input type="submit" value="Log out"/>
+				</form>
+			</div>
+			<div id="logged-out">
+				<form method="POST" action="../cgi-bin/login.py">
+					Username: <input type="text" name="username" required/> 
+					Password: <input type="password" name="password" required/>
+					<input type="submit" value="Log in!"/>
+				</form>
+				<a href="../create-account.php">Create Account</a>
+			</div>
+			<script type="text/javascript">
+				showHeader();
+			</script>
+		</div>
+	</header>
+	<nav><!-- All Top-level .html files should have exactly the same header contents -->
+		<ul>
+			<li>
+				<a href="../index.php">Home</a>
+			</li>
+			<li>
+				<a class="current" href="forum.php">Forum</a>
+			</li>	
+			<li>
+				<a href="../wiki.php">Wiki</a>
+			</li>
+			<li>
+				<a href="../about.php">About</a>
+			</li>
+			<li>
+				<a href="../user-account.php">User Account</a>
+			</li>
+		</ul>
+	</nav>
 
 <table style="background-color: #F0F0F0; border:#069 1px solid; border-top:none;" width="900" border="0" align="center" cellpadding="12" cellspacing="0">
 

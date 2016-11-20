@@ -1,0 +1,37 @@
+.topic_div {
+	background-color: white;
+	border: solid black 1px;
+	font: 14px black;
+	padding:5px;
+	margin-bottom: 7px;
+}
+
+.response_top_div {
+	background-color: black;
+	font-size:12px;
+	color: white;
+	padding:4px;
+	border: solid black 1px;
+}
+
+.response_div {
+	background-color: #FFF;
+	font-size:12px;
+	padding:7px;
+	border: solid black 1px;
+	margin-bottom:7px;
+}
+
+#none_yet_div {
+	background-color: #white;
+	font-size:14px;
+	padding:16px;
+	border: #black 1px solid;
+	margin-bottom:6px;
+	color: black;
+}
+
+h2 {
+	padding-left: 10px;
+	padding-top: 100px;
+}
