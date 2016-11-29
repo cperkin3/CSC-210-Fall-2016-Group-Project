@@ -75,7 +75,6 @@ try {
 	<script src="../js/header.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<script src="../js/jquery-1.4.2.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 
 //jquery
