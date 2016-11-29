@@ -105,14 +105,15 @@ function parseResponse ( ) {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
         $.post(url,{thread_id: thread_id.val(), content: post_body.val() } , function(data) {
-			  
+
+        	if (data.success == true) {
         		//how u get the user that just replied to see their response
 			   $("#none_yet_div").hide();
 			   var MattDiv = document.getElementById('postz');
 			   var ajaxdiv1 = document.createElement('div');
 			   ajaxdiv1.setAttribute("class", "response_top_div");
-			   ajaxdiv1.htmlContent = 'Re: <?php echo $thread_title ?>';
-			   ajaxdiv1.innerHTML = 'Re: <?php echo $thread_title ?>';
+			   ajaxdiv1.htmlContent = data.datetime . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . data.author . ' said:';
+			   ajaxdiv1.innerHTML = data.datetime . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . data.author . ' said:';
 			   MattDiv.appendChild(ajaxdiv1);
 			   var ajaxdiv = document.createElement('div');
 			   ajaxdiv.setAttribute("class", "response_div");
@@ -123,6 +124,11 @@ function parseResponse ( ) {
 			   document.responseForm.post_body.value='';
 			   $("#formProcessGif").hide();
 			   $("#myBtn1").show();
+        	}
+        	else {
+        		//TODO there was an error - display it
+        	}
+
          }); 
 	  }
 }
@@ -204,9 +210,9 @@ function parseResponse ( ) {
 
     <td width="731" valign="top" style="line-height:1.5em;">
 
-    <br />    
+    <br />
 
-    <span class="topicTitles"><?php echo $thread_title; ?></span><br /><br />
+    <span class="topicTitles"><b><?php echo $thread_title; ?></b></span><br /><br />
 
     Topic Started By: <a echo $post_author_id; ?><?php echo $post_author; ?></a>
     <!-- Topic Started By: <a href="../profile.php?id=<?php echo $post_author_id; ?>"><?php echo $post_author; ?></a> -->
