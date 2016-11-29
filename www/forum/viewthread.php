@@ -75,7 +75,6 @@ try {
 	<script src="../js/header.js"></script>
 
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<link href="style/style.css" rel="stylesheet" type="text/css" />
 <script src="../js/jquery-1.4.2.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
 
@@ -103,8 +102,6 @@ function parseResponse ( ) {
 	  var url = "parsepost.php";
       if (post_body.val() == "") {
            $("#formError").html('<font size="+2">Please type something</font>').show().fadeOut(3000);
-      } else if (post_body.val().length < 2 ) { 
-	         $("#formError").html('<font size="+2">Your post must be at least 2 characters long').show().fadeOut(3000);
       } else {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
