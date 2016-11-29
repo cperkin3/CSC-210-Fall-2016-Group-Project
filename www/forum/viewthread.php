@@ -94,16 +94,16 @@ $('#responseForm').submit(function(){$('input[type=submit]', this).attr('disable
 function parseResponse ( ) {
 	  var thread_id = $("#thread_id");
 	  var post_body = $("#content");
-	  var fs_title = $("#category_name");
+	  //var fs_title = $("#category_name");
 	  var u_id = $("#member_id");
-	  var u_pass = $("#password");
-	  var url = "parsepost.php";
+	  //var u_pass = $("#password");
+	  var url = "create-response.php";
       if (post_body.val() == "") {
            $("#formError").html('<font size="+2">Please type something</font>').show().fadeOut(3000);
       } else {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
-        $.post(url,{ post_type: "b", tid: thread_id.val(), post_body: post_body.val(), fsTitle: fs_title.val(), uid: u_id.val(), upass: u_pass.val() } , function(data) {
+        $.post(url,{thread_id: thread_id.val(), content: post_body.val(), user_id: u_id.val() } , function(data) {
 			  
         		//how u get the user that just replied to see their response
 			   $("#none_yet_div").hide();

@@ -87,7 +87,6 @@ elif 'logged_in' in cook_str:
 	cursor = conn.cursor()
 
 	# Grab Entered Data
-	``
 	content = new_post['content'].value
 
 	user = cookie['logged_in'].value
