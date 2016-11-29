@@ -20,7 +20,7 @@ new_post = cgi.FieldStorage()
 
 # If user not logged in, print error and quit program
 if not cook_str:
-	print "Sorry, you must be logged in to create a new post.\n"
+	#print "Sorry, you must be logged in to create a new post.\n"
 
 elif 'logged_in' in cook_str:
 	cookie = Cookie.SimpleCookie(cook_str)
@@ -45,11 +45,11 @@ elif 'logged_in' in cook_str:
 
 	# If any data invalid, print error and quit program
 	if error_string != "":
-		print error_string
-		print '''
-		  </body>
-		</html>
-		'''
+		#print error_string
+		#print '''
+		#  </body>
+		#</html>
+		#'''
 		sys.exit(0)
 
 	current_time = datetime.datetime.now()
@@ -63,20 +63,20 @@ elif 'logged_in' in cook_str:
 		conn.commit()
 	except:
 		conn.rollback()
-		print """An Error Occured while executing MySQL. Try Re-submitting your information. INSERT
-		  </body>
-		</html>"""
+		#print """An Error Occured while executing MySQL. Try Re-submitting your information. INSERT
+		#  </body>
+		#</html>"""
 		sys.exit(0)
 
 	conn.close()
 
-	print "<h1>You have successfully created a new post.</h1>"
+	#print "<h1>You have successfully created a new post.</h1>"
 
 # If user not logged in, print error and quit program
 else:
-	print "Sorry, you must be logged in to create a new thread.\n"
+	#print "Sorry, you must be logged in to create a new thread.\n"
 	
-print '''
-  </body>
-</html>
-'''
+#print '''
+#  </body>
+#</html>
+#'''
