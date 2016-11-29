@@ -97,7 +97,7 @@ function parseResponse ( ) {
 	  //var fs_title = $("#category_name");
 	  //var u_id = $("#member_id");
 	  //var u_pass = $("#password");
-	  var url = "create-response.php";
+	  var url = "create-response.py";
       if (post_body.val() == "") {
            $("#formError").html('<font size="+2">Please type something</font>').show().fadeOut(3000);
       } else {
