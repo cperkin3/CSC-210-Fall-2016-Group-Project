@@ -12,9 +12,10 @@
 
 		$thread_id = $_POST['thread_id']; 
 		$response_body = $_POST['content'];
-		$response_body = nl2br(htmlspecialchars($response_body));
-		$response_body = mysql_real_escape_string($response_body);
-		$response_author = preg_replace('#[^A-Za-z0-9]#i', '', $_SESSION['user_id']);
+		//$response_body = nl2br(htmlspecialchars($response_body));
+		//$response_body = mysql_real_escape_string($response_body);
+		//$response_author = preg_replace('#[^A-Za-z0-9]#i', '', $_SESSION['user_id']);
+		$response_author = $_POST['user_id'];
 		$post_title = $_POST['post_title'];
 		$current_time = time();
 
