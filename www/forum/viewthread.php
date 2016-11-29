@@ -36,43 +36,31 @@ try {
 	$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
 	$stmt->execute();
 
+	$responses = "";
+
 	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 		$post_author = $row["user_post_by"];
 		$date_time = $row["created_datetime"];
 		//$date_time = strftime("%b %d, %Y", strtotime($date_time));
 		$post_content = $row["content"];
+		$responses = '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
+		<div class="response_div">' . $post_content . '</div>'
 
-		echo '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
-		<div class="response_div">' . $post_content . '</div>';
+		//echo '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
+		//<div class="response_div">' . $post_content . '</div>';
 	}
 
 } catch (PDOException $e) {
 	echo "Error: " . $e->getMessage() . "<br/>";
 	die();
 }
+
 ?>
 
 <?php 
-/*
-// Be sure the user session vars are all set in order to show them the "replyButton"
-$replyButton = 'You must <a href="../login.py">Log In</a> to respond';
 
-if (isset($_SESSION['id']) && isset($_SESSION['username']) && isset($_SESSION['email']) && isset($_SESSION['password'])) {
 	$replyButton = '<input name="myBtn1" type="submit" value="Post a Response" style="font-size:16px; padding:12px;" onmousedown="javascript:toggleForm(\'reponse_form\');" />';
-}
 
-// Check the database to be sure that their ID, password, and email session variables all match in the database
-$u_id = mysql_real_escape_string($_SESSION['id']);
-$u_name = mysql_real_escape_string($_SESSION['username']);
-$u_email = mysql_real_escape_string($_SESSION['email']);
-$u_pass = mysql_real_escape_string($_SESSION['password']);
-$sql = mysql_query("SELECT * FROM Users WHERE id='$u_id' AND username='$u_name' AND email='$u_email' AND password='$u_pass'");
-$numRows = mysql_num_rows($sql);
-
-if ($numRows < 1) {
-	   $replyButton = 'You Must <a href="../login.py">Log In</a> to Respond';
-}
-*/
 ?>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -123,8 +111,10 @@ function parseResponse ( ) {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
         $.post(url,{ post_type: "b", tid: thread_id.val(), post_body: post_body.val(), fsID: fs_id.val(), fsTitle: fs_title.val(), uid: u_id.val(), upass: u_pass.val() } , function(data) {
+			  
+        		//how u get the user that just replied to see their response
 			   $("#none_yet_div").hide();
-			   var MattDiv = document.getElementById('responses');
+			   var MattDiv = document.getElementById('postz');
 			   var ajaxdiv1 = document.createElement('div');
 			   ajaxdiv1.setAttribute("class", "response_top_div");
 			   ajaxdiv1.htmlContent = 'Re: <?php echo $thread_title ?>';
@@ -196,7 +186,7 @@ function parseResponse ( ) {
 
     <td width="731" valign="top" style="line-height:1.5em;">
 
-    <div id=""><a href="">Web Intersect Home</a> &larr; <a href="">Forum Home</a> &larr; <a href="section.php?id=<?php echo $section_id; ?>"><?php echo $section_title; ?></a></div>
+    <div id=""><a href="">Home</a> &larr; <a href="">Forum Home</a> &larr; <a href="section.php?id=<?php echo $section_id; ?>"><?php echo $section_title; ?></a></div>
 
     <br />    
 
@@ -210,7 +200,7 @@ function parseResponse ( ) {
 
     <div class="topic_div"><?php echo $post_body; ?></div>
 
-<div id="responses"><?php echo $all_responses; ?></div>
+<div id="postz"><?php echo $responses; ?></div>
 
 
 
