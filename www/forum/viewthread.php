@@ -104,7 +104,7 @@ function parseResponse ( ) {
       } else {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
-        $.post(url,{thread_id: thread_id.val(), content: post_body.val() } , function(data, status) {
+        $.post(url,{thread_id: thread_id.val(), content: post_body.val() } , function(data) {
 			  
         		//how u get the user that just replied to see their response
 			   $("#none_yet_div").hide();
@@ -118,8 +118,6 @@ function parseResponse ( ) {
 			   ajaxdiv.setAttribute("class", "response_div");
 			   //ajaxdiv.htmlContent = post_body.val();
 			   ajaxdiv.innerHTML = post_body.val();
-			   ajaxdiv.innerHTML += status;
-			   ajaxdiv.innerHTML += data;
 			   MattDiv.appendChild(ajaxdiv);
 			   $('#response_form').slideUp("fast");
 			   document.responseForm.post_body.value='';
