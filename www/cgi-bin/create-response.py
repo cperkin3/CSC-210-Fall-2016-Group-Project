@@ -11,6 +11,7 @@ import time
 import hashlib
 import Cookie
 import os
+import json
 
 cgitb.enable()
 
@@ -69,7 +70,6 @@ elif 'logged_in' in cook_str:
 		conn.rollback()
 		#print "An Error Occured while executing MySQL. Try Re-submitting your information. INSERT"
 		data['success'] = False
-		sys.exit(0)
 
 	conn.close()
 

@@ -104,16 +104,17 @@ function parseResponse ( ) {
       } else {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
-        $.post(url,{thread_id: thread_id.val(), content: post_body.val() } , function(data) {
-
+		/*
+        $.post(url,{thread_id: thread_id.val(), content: post_body.val() } , function() {
+			console.log(status);
         	if (data.success == true) {
         		//how u get the user that just replied to see their response
 			   $("#none_yet_div").hide();
 			   var MattDiv = document.getElementById('postz');
 			   var ajaxdiv1 = document.createElement('div');
 			   ajaxdiv1.setAttribute("class", "response_top_div");
-			   ajaxdiv1.htmlContent = data.datetime . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . data.author . ' said:';
-			   ajaxdiv1.innerHTML = data.datetime . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . data.author . ' said:';
+			   ajaxdiv1.htmlContent = data.datetime + ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' + data.author + ' said:';
+			   ajaxdiv1.innerHTML = data.datetime + ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' + data.author + ' said:';
 			   MattDiv.appendChild(ajaxdiv1);
 			   var ajaxdiv = document.createElement('div');
 			   ajaxdiv.setAttribute("class", "response_div");
@@ -127,9 +128,57 @@ function parseResponse ( ) {
         	}
         	else {
         		//TODO there was an error - display it
-        	}
+				alert("Problemo!");
+			}
 
-         }); 
+         }, "json");
+		 */
+		 
+		 $.ajax({
+			url: '../cgi-bin/create-response.py',  // lecture 8 script to query the pizza database
+
+			data: {                       // the data to send
+				thread_id: thread_id.val(), 
+				content: post_body.val()
+			},
+
+			type: "POST",                  // GET or POST
+
+			dataType: "json",             // json format
+
+			success: function( data ) {   // function to execute upon a successful request
+				console.log(status);
+				if (data.success == true) {
+					//how u get the user that just replied to see their response
+				   $("#none_yet_div").hide();
+				   var MattDiv = document.getElementById('postz');
+				   var ajaxdiv1 = document.createElement('div');
+				   ajaxdiv1.setAttribute("class", "response_top_div");
+				   ajaxdiv1.htmlContent = data.datetime + ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' + data.author + ' said:';
+				   ajaxdiv1.innerHTML = data.datetime + ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' + data.author + ' said:';
+				   MattDiv.appendChild(ajaxdiv1);
+				   var ajaxdiv = document.createElement('div');
+				   ajaxdiv.setAttribute("class", "response_div");
+				   //ajaxdiv.htmlContent = post_body.val();
+				   ajaxdiv.innerHTML = post_body.val();
+				   MattDiv.appendChild(ajaxdiv);
+				   $('#response_form').slideUp("fast");
+				   document.responseForm.post_body.value='';
+				   $("#formProcessGif").hide();
+				   $("#myBtn1").show();
+				}
+				else {
+					//TODO there was an error - display it
+					alert("Problemo!");
+				}
+			},
+
+			error: function(request) {   // function to call when the request fails
+				console.log(request.responseText);
+			}
+		});
+
+		console.log("after post call");
 	  }
 }
 
