@@ -43,7 +43,7 @@ try {
 		$date_time = $row["created_datetime"];
 		//$date_time = strftime("%b %d, %Y", strtotime($date_time));
 		$post_content = $row["content"];
-		$responses = '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
+		$responses = $responses . '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
 		<div class="response_div">' . $post_content . '</div>';
 
 		//echo '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
