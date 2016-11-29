@@ -57,7 +57,7 @@ try {
 
 <?php 
 
-	$replyButton = '<input name="myBtn1" type="submit" value="Post a Response" style="font-size:16px; padding:12px;" onmousedown="javascript:toggleForm(\'reponse_form\');" />';
+	$replyButton = '<input name="myBtn1" type="submit" value="Post a Response" style="font-size:16px; padding:12px;" onmousedown="javascript:toggleForm(\'response_form\');" />';
 
 ?>
 
@@ -123,7 +123,7 @@ function parseResponse ( ) {
 			   ajaxdiv.htmlContent = data;
 			   ajaxdiv.innerHTML = data;
 			   MattDiv.appendChild(ajaxdiv);
-			   $('#reponse_form').slideUp("fast");
+			   $('#response_form').slideUp("fast");
 			   document.responseForm.post_body.value='';
 			   $("#formProcessGif").hide();
 			   $("#myBtn1").show();
@@ -198,7 +198,7 @@ function parseResponse ( ) {
 
 <!-- START DIV that contains the form -->
 
-<div id="reponse_form" style="display:none; background-color: #BAE1FE; border:#06C 1px solid; padding:16px;">
+<div id="response_form" style="display:none; background-color: #BAE1FE; border:#06C 1px solid; padding:16px;">
 
 <form action="javascript:parseResponse();" name="responseForm" id="responseForm" method="post">
 
@@ -208,7 +208,7 @@ function parseResponse ( ) {
 
     <br /><br /><input name="myBtn1" id="myBtn1" type="submit" value="Submit Your Response" style="padding:6px;" /> <span id="formProcessGif" style="display:none;"><img src="../images/loading.gif" width="28" height="10" alt="Loading" vspace="2" hspace="48" /></span>
 
-    or <a href="#" onclick="return false" onmousedown="javascript:toggleForm('reponse_form');">Cancel</a>
+    or <a href="#" onclick="return false" onmousedown="javascript:toggleForm('response_form');">Cancel</a>
 
     <input name="thread_id" id="thread_id" type="hidden" value="<?php echo $thread_id; ?>" />
 
