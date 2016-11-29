@@ -174,6 +174,30 @@ function parseResponse ( ) {
 		</ul>
 	</nav>
 
+	<aside class="nav-aside">
+			<ul>
+				<li>
+					<a href="forum.php">Forum Home</a>
+				</li>
+				<li>
+					<a href="view_category.php?category=General">General</a>
+				</li>
+				<li>
+					<a href="view_category.php?category=Characters">Characters</a>
+				</li>
+				<li>
+					<a href="view_category.php?category=Differences">Differences</a>
+				</li>
+				<li>
+					<a href="view_category.php?category=Other">Other</a>
+				</li>
+				<li>
+					<a href="create-thread.php">Create New Thread</a>
+				</li>
+			</ul>
+		</aside>
+	<article class="forum">
+	
 <table style="background-color: #F0F0F0; border:#069 1px solid; border-top:none;" width="900" border="0" align="center" cellpadding="12" cellspacing="0">
 
   <tr>
@@ -227,7 +251,7 @@ function parseResponse ( ) {
 </td>
 </tr>
 </table>
-
+</article>
 </body>
 
 </html>
