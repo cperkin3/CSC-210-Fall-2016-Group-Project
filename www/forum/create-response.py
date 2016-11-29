@@ -30,10 +30,10 @@ elif 'logged_in' in cook_str:
 	cursor = conn.cursor()
 
 	# Grab Entered Data
-	thread_id = new_post['thread_id']; 
-	response_body = new_post['content'];
+	thread_id = new_post['thread_id']
+	response_body = new_post['content']
 
-	current_time = time();
+	current_time = time()
 	user = cookie['logged_in'].value
 	thread_id = 0
 
