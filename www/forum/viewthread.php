@@ -229,7 +229,7 @@ function parseResponse ( ) {
 
     or <a href="#" onclick="return false" onmousedown="javascript:toggleForm('response_form');">Cancel</a>
 
-    <input name="thread_id" id="thread_id" type="hidden" value="<?php echo $thread_id; ?>" />
+    <input name="thread_id" id="thread_id" type="hidden" value="<?php echo $_GET['id']; ?>" />
 
     <input name="forum_section_id" id="forum_section_id" type="hidden" value="<?php echo $section_id; ?>" />
 
