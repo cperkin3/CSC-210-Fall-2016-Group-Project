@@ -111,7 +111,7 @@ function parseResponse ( ) {
 			   var MattDiv = document.getElementById('postz');
 			   var ajaxdiv1 = document.createElement('div');
 			   ajaxdiv1.setAttribute("class", "response_top_div");
-			   ajaxdiv1.htmlContent = 'Re: <?php echo $thread_title ?>';
+			   //ajaxdiv1.htmlContent = 'Re: <?php echo $thread_title ?>';
 			   ajaxdiv1.innerHTML = 'Re: <?php echo $thread_title ?>';
 			   MattDiv.appendChild(ajaxdiv1);
 			   var ajaxdiv = document.createElement('div');
