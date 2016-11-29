@@ -95,15 +95,15 @@ function parseResponse ( ) {
 	  var thread_id = $("#thread_id");
 	  var post_body = $("#content");
 	  //var fs_title = $("#category_name");
-	  var u_id = $("#member_id");
+	  //var u_id = $("#member_id");
 	  //var u_pass = $("#password");
-	  var url = "create-response.php";
+	  var url = "create-response.py";
       if (post_body.val() == "") {
            $("#formError").html('<font size="+2">Please type something</font>').show().fadeOut(3000);
       } else {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
-        $.post(url,{thread_id: thread_id.val(), content: post_body.val(), user_id: u_id.val() } , function(data) {
+        $.post(url,{thread_id: thread_id.val(), content: post_body.val() } , function(data) {
 			  
         		//how u get the user that just replied to see their response
 			   $("#none_yet_div").hide();
