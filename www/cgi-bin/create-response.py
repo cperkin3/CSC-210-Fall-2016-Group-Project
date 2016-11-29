@@ -56,7 +56,7 @@ elif 'logged_in' in cook_str:
 	post_query = 'INSERT INTO Forum_Posts (thread_id, content, user_post_by, created_datetime) VALUES (%s, %s, %s, %s)'
 
 	# return json object
-	data['datetime'] = current_time
+	data['datetime'] = current_time.strftime("%Y-$%m-%d %I:%M:%S")
 	data['author'] = user
 
 	try:
