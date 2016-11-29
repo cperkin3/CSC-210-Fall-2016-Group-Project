@@ -93,11 +93,12 @@ $('#responseForm').submit(function(){$('input[type=submit]', this).attr('disable
 
 function parseResponse ( ) {
 	  var thread_id = $("#thread_id");
-	  var post_body = $("#content");
+	  var post_body = $("#post_body");
 	  //var fs_title = $("#category_name");
 	  //var u_id = $("#member_id");
 	  //var u_pass = $("#password");
 	  var url = "create-response.py";
+	  //alert(post_body);
       if (post_body.val() == "") {
            $("#formError").html('<font size="+2">Please type something</font>').show().fadeOut(3000);
       } else {
@@ -115,8 +116,8 @@ function parseResponse ( ) {
 			   MattDiv.appendChild(ajaxdiv1);
 			   var ajaxdiv = document.createElement('div');
 			   ajaxdiv.setAttribute("class", "response_div");
-			   ajaxdiv.htmlContent = data;
-			   ajaxdiv.innerHTML = data;
+			   //ajaxdiv.htmlContent = post_body.val();
+			   ajaxdiv.innerHTML = post_body.val();
 			   MattDiv.appendChild(ajaxdiv);
 			   $('#response_form').slideUp("fast");
 			   document.responseForm.post_body.value='';
