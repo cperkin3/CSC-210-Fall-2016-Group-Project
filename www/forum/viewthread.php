@@ -30,8 +30,6 @@ try {
 		$thread_title = $row["title"];
 	}
 
-	echo "<h2>$thread_title</h2>";
-
 	// Get original post with all replies in the thread
 	$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
 	$stmt->execute();
@@ -186,22 +184,16 @@ function parseResponse ( ) {
 
     <td width="731" valign="top" style="line-height:1.5em;">
 
-    <div id=""><a href="">Home</a> &larr; <a href="">Forum Home</a> &larr; <a href="section.php?id=<?php echo $section_id; ?>"><?php echo $section_title; ?></a></div>
-
     <br />    
 
     <span class="topicTitles"><?php echo $thread_title; ?></span><br /><br />
 
-    Topic Started By: <a href="../profile.php?id=<?php echo $post_author_id; ?>"><?php echo $post_author; ?></a>
+    Topic Started By: <a echo $post_author_id; ?><?php echo $post_author; ?></a>
+    <!-- Topic Started By: <a href="../profile.php?id=<?php echo $post_author_id; ?>"><?php echo $post_author; ?></a> -->
 
     &nbsp; &nbsp; &nbsp; Created: <span class="topicCreationDate"><?php echo $date_time; ?></span>
 
-    
-
-    <div class="topic_div"><?php echo $post_body; ?></div>
-
 <div id="postz"><?php echo $responses; ?></div>
-
 
 
 <!-- START DIV that contains the form -->
@@ -236,15 +228,8 @@ function parseResponse ( ) {
 
 <?php echo $replyButton; ?>
 
-<br />
-<br />
 </td>
-    <td width="189" valign="top"><div style=" width:160px; height:600px; background-color: #999; color: #CCC; padding:12px;"> <br />
-      <br />
-      <br />
-      <h3>Ad Space or Whatever</h3>
-    </div></td>
-  </tr>
+</tr>
 </table>
 
 </body>
