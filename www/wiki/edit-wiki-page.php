@@ -107,6 +107,7 @@
 
 							foreach ($html->find('subsection') as $element) {
 								$subid = $element->id;
+								echo "found";
 								$subcontent = $element->innertext;
 
 								echo $subid . ": <textarea cols='40' rows='5' name='" . $subid . "' value='" . $subcontent . "'></textarea><br/>";

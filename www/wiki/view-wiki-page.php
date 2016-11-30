@@ -20,6 +20,7 @@
 		$page_title = $row["title"];
 		$page_category = $row["category_name"];
 		$page_content = $row["content"];
+		
 		$last_editor = $row["user_last_edited_by"];
 		$edited_datetime = $row["last_edited_datetime"];
 		
@@ -109,7 +110,7 @@
 		</aside>	
 		<article class="forum">
 			
-			<h3><?php echo $page_title ?></h3>
+			<h2><?php echo $page_title ?></h2>
 			<hr>
 			<?php echo $page_content ?>
 			<hr>
