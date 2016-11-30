@@ -2,7 +2,6 @@
 <html>
 	<head>
 		<title>CSC 210 Project</title>
-		<?php include("includes/imports.html");?>
 		<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="css/nav-bar.css">
 		<link rel="stylesheet" type="text/css" href="css/login-bar.css">
@@ -33,7 +32,7 @@
 				</script>
 			</div>
 		</header>
-		<nav><!-- All Top-level .html files should have exactly the same header contents -->
+		<nav>
 			<ul>
 				<li>
 					<a href="index.php">Home</a>
@@ -53,7 +52,123 @@
 			</ul>
 		</nav>
 		<article>
-			<h1>TODO: Add title</h1>
+			<h1>User Home Page</h1>
+			
+			<?php
+
+			session_start();
+
+			if(!isset($_COOKIE['logged_in'])) {
+				echo "Please log in to view your profile";
+			}
+			else { // Person is Logged In
+				$user_name = $_COOKIE["logged_in"];
+			
+				//connect to thrones database
+				$servername = "localhost";
+				$username = "root";
+				$password = "mysql";
+				$dbname = "Thrones_Database";
+				
+				try {
+					$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+					// Set the PDO error mode to exception
+					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+					
+					$stmt = $conn->prepare("SELECT * FROM Users WHERE username = '$user_name'");
+					$stmt->execute();
+					
+					while($row = $stmt->fetch(PDO::FETCH_ASSOC)) { // Necessarily exactly 1 result
+						$bio = $row["bio"];
+						$birthdate = $row["birthdate"];
+						$email = $row["email"];
+						$favorite_character = $row["favorite_character"];
+						$join_date = $row["join_date"];
+						$profile_last_updated = $row["profile_last_updated"];
+						$profile_pic = $row["profile_pic"];
+						
+						echo "User: $user_name";
+						echo "<BR/>";
+						echo "Birthdate: $birthdate";
+						echo "<BR/>";
+						echo "Join Date: $join_date";
+						echo "<BR/>";
+						echo "Proflie Last Updated: $profile_last_updated";
+						echo "<BR/><BR/>";
+						
+						echo "Email: $email";
+						echo "<BR />";
+						echo '<form method="post" action="cgi-bin/update-user-field.py">
+								Update Value: <input type="text" name="email" required/>
+								<input type="submit" value="Join!"/>
+							</form>
+							<BR/>';
+						
+						echo "Favorite Character: $favorite_character";
+						echo "<BR />";
+						echo '<form method="post" action="cgi-bin/update-user-field.py">
+								Update Value: <input type="text" name="favorite_character" required/>
+								<input type="submit" value="Join!"/>
+							</form>
+							<BR/>';
+						
+						echo "Proflie Picture: $profile_pic";
+						echo "<BR />";
+						echo '<form method="post" action="cgi-bin/update-user-field.py">
+								Update Value: <input type="text" name="profile_pic" required/>
+								<input type="submit" value="Join!"/>
+							</form>
+							<BR/>';
+						
+						echo "Bio: $bio";
+						echo "<BR />";
+						echo '<form method="post" action="cgi-bin/update-user-field.py">
+								Update Value: <input type="text" name="bio" required/>
+								<input type="submit" value="Join!"/>
+							</form>
+							<BR/>';
+						
+						
+					}
+				}
+				catch (PDOException $e) {
+					echo "Error: " . $e->getMessage() . "<br/>";
+					die();
+				}
+			}
+			
+			
+			
+			
+	/*		try {
+
+				$thread_title = "";
+				while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					$thread_title = $row["title"];
+				}
+
+				// Get original post with all replies in the thread
+				$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
+				$stmt->execute();
+
+				$responses = "";
+
+				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+					$post_author = $row["user_post_by"];
+					$date_time = $row["created_datetime"];
+					//$date_time = strftime("%b %d, %Y", strtotime($date_time));
+					$post_content = $row["content"];
+					$responses = $responses . '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
+					<div class="response_div">' . $post_content . '</div>';
+
+					//echo '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
+					//<div class="response_div">' . $post_content . '</div>';
+				}
+
+			} 
+*/
+			?>
+			
 			<!--
 			<div class="info">
 				<div id="good">
