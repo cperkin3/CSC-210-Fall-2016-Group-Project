@@ -125,10 +125,8 @@
 								
 								// Display each result
 								while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-									// TODO : Find out where links need to go
 									echo "<tr>";
 									echo "<td><a href=\"viewthread.php?id=" . $row['thread_id'] . "\"> " . $row['title'] . "</a></td>";
-									//echo "<td>" . $row['title'] . "</td>";
 									echo "<td>" . $row['user_created_by'] . "</td>";
 									echo "<td>" . $row['created_datetime'] . "</td>";
 									echo "<td>" . $row['MAX(Forum_Posts.created_datetime)'] . "</td>";
@@ -143,12 +141,5 @@
 				</tbody>
 			</table>
 		</article>
-		<aside>
-		
-		</aside>
-		<footer>
-		
-		</footer>
-		
 	</body>
 </html>

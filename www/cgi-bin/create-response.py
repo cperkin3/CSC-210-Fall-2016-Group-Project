@@ -26,7 +26,6 @@ data = {}
 
 # If user not logged in, print error and quit program
 if not cook_str:
-	#print "Sorry, you must be logged in to respond to a post.\n"
 	data['success'] = False
 
 elif 'logged_in' in cook_str:
@@ -68,14 +67,12 @@ elif 'logged_in' in cook_str:
 		data['success'] = True
 	except:
 		conn.rollback()
-		#print "An Error Occured while executing MySQL. Try Re-submitting your information. INSERT"
 		data['success'] = False
 
 	conn.close()
 
 # If user not logged in, print error and quit program
 else:
-	#print "Sorry, you must be logged in to respond to a thread.\n"
 	data['success'] = False
 
 print json.dumps(data)

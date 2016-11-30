@@ -110,12 +110,5 @@
 				<input type="submit" value="Create!"/>
 			</form>
 		</article>
-		<aside>
-		
-		</aside>
-		<footer>
-		
-		</footer>
-		
 	</body>
 </html>

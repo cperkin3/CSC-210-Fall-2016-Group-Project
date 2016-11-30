@@ -1,61 +1,47 @@
 <?php
 
-session_start();
+	session_start();
+	
+	// Connect to thrones database
+	$servername = "localhost";
+	$username = "root";
+	$password = "mysql";
+	$dbname = "Thrones_Database";
 
-// Connect to the class file for converting date_time to "Ago" format
+	$thread_id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
 
-include_once ("agoTimeFormat.php");
+	try {
+		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+		// Set the PDO error mode to exception
+		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-$myAgoObject = new convertToAgo; // Establish the object
+		// Get thread title
+		$stmt = $conn->prepare("SELECT title FROM Forum_Threads WHERE id = $thread_id");
+		$stmt->execute();
 
-//connect to thrones database
-$servername = "localhost";
-$username = "root";
-$password = "mysql";
-$dbname = "Thrones_Database";
+		$thread_title = "";
+		while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$thread_title = $row["title"];
+		}
 
-$thread_id = preg_replace('#[^0-9]#i', '', $_GET['id']); 
+		// Get original post with all replies in the thread
+		$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
+		$stmt->execute();
 
-try {
-	$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
-	// Set the PDO error mode to exception
-	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		$responses = "";
 
-	// Get thread title
-	$stmt = $conn->prepare("SELECT title FROM Forum_Threads WHERE id = $thread_id");
-	$stmt->execute();
+		while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+			$post_author = $row["user_post_by"];
+			$date_time = $row["created_datetime"];
+			$post_content = $row["content"];
+			$responses = $responses . '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
+			<div class="response_div">' . $post_content . '</div>';
+		}
 
-	$thread_title = "";
-	while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		$thread_title = $row["title"];
+	} catch (PDOException $e) {
+		echo "Error: " . $e->getMessage() . "<br/>";
+		die();
 	}
-
-	// Get original post with all replies in the thread
-	$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
-	$stmt->execute();
-
-	$responses = "";
-
-	while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-		$post_author = $row["user_post_by"];
-		$date_time = $row["created_datetime"];
-		//$date_time = strftime("%b %d, %Y", strtotime($date_time));
-		$post_content = $row["content"];
-		$responses = $responses . '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
-		<div class="response_div">' . $post_content . '</div>';
-
-		//echo '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
-		//<div class="response_div">' . $post_content . '</div>';
-	}
-
-} catch (PDOException $e) {
-	echo "Error: " . $e->getMessage() . "<br/>";
-	die();
-}
-
-?>
-
-<?php 
 
 	$replyButton = '<input name="myBtn1" type="submit" value="Post a Response" style="font-size:16px; padding:12px;" onmousedown="javascript:toggleForm(\'response_form\');" />';
 
@@ -80,11 +66,11 @@ try {
 //jquery
 
 function toggleForm(x) {
-		if ($('#'+x).is(":hidden")) {
-			$('#'+x).slideDown(200);1
-		} else {
-			$('#'+x).slideUp(200);
-		}
+	if ($('#'+x).is(":hidden")) {
+		$('#'+x).slideDown(200);1
+	} else {
+		$('#'+x).slideUp(200);
+	}
 }
 
 //ajax
@@ -94,62 +80,29 @@ $('#responseForm').submit(function(){$('input[type=submit]', this).attr('disable
 function parseResponse ( ) {
 	  var thread_id = $("#thread_id");
 	  var post_body = $("#post_body");
-	  //var fs_title = $("#category_name");
-	  //var u_id = $("#member_id");
-	  //var u_pass = $("#password");
 	  var url = "../cgi-bin/create-response.py";
-	  //alert(post_body);
+
       if (post_body.val() == "") {
            $("#formError").html('<font size="+2">Please type something</font>').show().fadeOut(3000);
       } else {
 		$("#myBtn1").hide();
 		$("#formProcessGif").show();
-		/*
-        $.post(url,{thread_id: thread_id.val(), content: post_body.val() } , function() {
-			console.log(status);
-        	if (data.success == true) {
-        		//how u get the user that just replied to see their response
-			   $("#none_yet_div").hide();
-			   var MattDiv = document.getElementById('postz');
-			   var ajaxdiv1 = document.createElement('div');
-			   ajaxdiv1.setAttribute("class", "response_top_div");
-			   ajaxdiv1.htmlContent = data.datetime + ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' + data.author + ' said:';
-			   ajaxdiv1.innerHTML = data.datetime + ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' + data.author + ' said:';
-			   MattDiv.appendChild(ajaxdiv1);
-			   var ajaxdiv = document.createElement('div');
-			   ajaxdiv.setAttribute("class", "response_div");
-			   //ajaxdiv.htmlContent = post_body.val();
-			   ajaxdiv.innerHTML = post_body.val();
-			   MattDiv.appendChild(ajaxdiv);
-			   $('#response_form').slideUp("fast");
-			   document.responseForm.post_body.value='';
-			   $("#formProcessGif").hide();
-			   $("#myBtn1").show();
-        	}
-        	else {
-        		//TODO there was an error - display it
-				alert("Problemo!");
-			}
-
-         }, "json");
-		 */
 		 
 		 $.ajax({
-			url: '../cgi-bin/create-response.py',  // lecture 8 script to query the pizza database
+			url: '../cgi-bin/create-response.py',
 
-			data: {                       // the data to send
+			data: {
 				thread_id: thread_id.val(), 
 				content: post_body.val()
 			},
 
-			type: "POST",                  // GET or POST
+			type: "POST",
 
-			dataType: "json",             // json format
+			dataType: "json",
 
 			success: function( data ) {   // function to execute upon a successful request
 				console.log(status);
 				if (data.success == true) {
-					//how u get the user that just replied to see their response
 				   $("#none_yet_div").hide();
 				   var MattDiv = document.getElementById('postz');
 				   var ajaxdiv1 = document.createElement('div');
@@ -159,7 +112,6 @@ function parseResponse ( ) {
 				   MattDiv.appendChild(ajaxdiv1);
 				   var ajaxdiv = document.createElement('div');
 				   ajaxdiv.setAttribute("class", "response_div");
-				   //ajaxdiv.htmlContent = post_body.val();
 				   ajaxdiv.innerHTML = post_body.val();
 				   MattDiv.appendChild(ajaxdiv);
 				   $('#response_form').slideUp("fast");
@@ -169,7 +121,7 @@ function parseResponse ( ) {
 				}
 				else {
 					//TODO there was an error - display it
-					alert("Problemo!");
+					alert("Problem!");
 				}
 			},
 
@@ -177,17 +129,13 @@ function parseResponse ( ) {
 				console.log(request.responseText);
 			}
 		});
-
-		console.log("after post call");
 	  }
 }
 
 </script>
-
 </head>
 
 <body>
-
 	<header> 
 		<div class="login-top">
 			<div id="logged-in">
@@ -256,20 +204,13 @@ function parseResponse ( ) {
 <table style="background-color: #F0F0F0; border:#069 1px solid; border-top:none;" width="900" border="0" align="center" cellpadding="12" cellspacing="0">
 
   <tr>
-
     <td width="731" valign="top" style="line-height:1.5em;">
-
     <br />
-
     <span class="topicTitles"><b><?php echo $thread_title; ?></b></span><br /><br />
-
     Topic Started By: <a echo $post_author_id; ?><?php echo $post_author; ?></a>
-    <!-- Topic Started By: <a href="../profile.php?id=<?php echo $post_author_id; ?>"><?php echo $post_author; ?></a> -->
-
     &nbsp; &nbsp; &nbsp; Created: <span class="topicCreationDate"><?php echo $date_time; ?></span>
 
 <div id="postz"><?php echo $responses; ?></div>
-
 
 <!-- START DIV that contains the form -->
 

@@ -23,13 +23,13 @@ print
 print '''<html>
   <head>
     <title>CSC 210 Project</title>
-				<!-- CSS -->
-				<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
-				<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
-				<link rel="stylesheet" type="text/css" href="../css/styles.css">
-				<!-- JavaScript --> 
-				<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-				<script src="../js/header.js"></script>
+		<!-- CSS -->
+		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/styles.css">
+		<!-- JavaScript --> 
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+		<script src="../js/header.js"></script>
   </head>
   <body>
 	<header>
