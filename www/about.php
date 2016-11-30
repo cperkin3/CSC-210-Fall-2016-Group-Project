@@ -52,7 +52,15 @@
 			</ul>
 		</nav>
 		<article>
-			<h1>TODO: Add title</h1>
+			<h1>About the Page Authors</h1>
+			<h2>Matt Hood</h2>
+			<p></p>
+			<h2>Megan Markert</h2>
+			<p></p>
+			<h2>Chris Perkins</h2>
+			<p>Chris is a senior computer science major at the University of Rochester.</p>
+			<h2>Evan Strohm</h2>
+			<p></p>
 		</article>
 		<aside>
 		
