@@ -116,6 +116,10 @@
 			This page is in category <a href="view-wiki-category.php?category=<?php echo $page_category ?>"><?php echo $page_category ?></a>
 			<br>
 			Page last edited by <?php echo $last_editor ?> at <?php echo $edited_datetime ?>
+			<form method="POST" action="edit-wiki-page.php">
+				<input type="hidden" name="title" value="<?php echo $page_title ?>">
+				<input type="submit" value="Edit this page!"/>
+			</form>
 			
 		</article>
 	</body>
