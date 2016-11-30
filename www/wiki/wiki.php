@@ -52,9 +52,9 @@
 			</ul>
 		</nav>
 		<article>
-			<form method="post" action="cgi-bin/search-wiki.py">
-				<input type="text" name="search-bar" required/>
-				<input type="submit" value="SEARCH"/>
+			<form method="post" action="../cgi-bin/search-wiki.py" id="wiki-search-bar">
+				<input type="text" name="search-bar" id="wiki-search-text-entry" required/>
+				<input type="submit" id="wiki-search-submit" value="SEARCH"/>
 			</form>
 			<h1>Game of Thrones / A Song of Ice and Fire Wiki</h1>
 		</article>

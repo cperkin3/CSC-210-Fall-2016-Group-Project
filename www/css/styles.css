@@ -62,3 +62,15 @@ article.forum {
 	width: 84%;
 }
 
+#wiki-search-bar {
+	margin-left: 5px;
+	width: 99%;
+}
+
+#wiki-search-text-entry {
+	width: 88%;
+}
+
+#wiki-search-submit {
+	width: 10%;
+}
