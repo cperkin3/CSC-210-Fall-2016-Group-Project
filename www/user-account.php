@@ -55,7 +55,6 @@
 			<h1>User Home Page</h1>
 			
 			<?php
-
 			session_start();
 
 			if(!isset($_COOKIE['logged_in'])) {
@@ -95,40 +94,34 @@
 						echo "<BR/>";
 						echo "Proflie Last Updated: $profile_last_updated";
 						echo "<BR/><BR/>";
-						
 						echo "Email: $email";
 						echo "<BR />";
 						echo '<form method="post" action="cgi-bin/update-user-field.py">
 								Update Value: <input type="text" name="email" required/>
-								<input type="submit" value="Join!"/>
+								<input type="submit" value="Change"/>
 							</form>
 							<BR/>';
-						
 						echo "Favorite Character: $favorite_character";
 						echo "<BR />";
 						echo '<form method="post" action="cgi-bin/update-user-field.py">
 								Update Value: <input type="text" name="favorite_character" required/>
-								<input type="submit" value="Join!"/>
+								<input type="submit" value="Change"/>
 							</form>
 							<BR/>';
-						
 						echo "Proflie Picture: $profile_pic";
 						echo "<BR />";
 						echo '<form method="post" action="cgi-bin/update-user-field.py">
 								Update Value: <input type="text" name="profile_pic" required/>
-								<input type="submit" value="Join!"/>
+								<input type="submit" value="Change"/>
 							</form>
 							<BR/>';
-						
 						echo "Bio: $bio";
 						echo "<BR />";
 						echo '<form method="post" action="cgi-bin/update-user-field.py">
 								Update Value: <input type="text" name="bio" required/>
-								<input type="submit" value="Join!"/>
+								<input type="submit" value="Change"/>
 							</form>
 							<BR/>';
-						
-						
 					}
 				}
 				catch (PDOException $e) {
@@ -136,68 +129,7 @@
 					die();
 				}
 			}
-			
-			
-			
-			
-	/*		try {
-
-				$thread_title = "";
-				while($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-					$thread_title = $row["title"];
-				}
-
-				// Get original post with all replies in the thread
-				$stmt = $conn->prepare("SELECT * FROM Forum_Posts WHERE thread_id = $thread_id ORDER BY created_datetime ASC");
-				$stmt->execute();
-
-				$responses = "";
-
-				while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-					$post_author = $row["user_post_by"];
-					$date_time = $row["created_datetime"];
-					//$date_time = strftime("%b %d, %Y", strtotime($date_time));
-					$post_content = $row["content"];
-					$responses = $responses . '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
-					<div class="response_div">' . $post_content . '</div>';
-
-					//echo '<div class="response_top_div">' . $date_time . ' &nbsp; &nbsp; &bull; &nbsp; &nbsp; ' . $post_author . ' said:</div>
-					//<div class="response_div">' . $post_content . '</div>';
-				}
-
-			} 
-*/
-			?>
-			
-			<!--
-			<div class="info">
-				<div id="good">
-					<span id="welcome-name"></span>
-					<form method="POST" action="cgi-bin/logout.py">
-						<input type="submit" value="Log out"/>
-					</form>
-				</div>
-				<div id="bad">
-					<form method="POST" action="cgi-bin/login.py">
-						Username: <input type="text" name="username" required/> 
-						Password: <input type="password" name="password" required/>
-						<input type="submit" value="Log in!"/>
-					</form>
-					<a href="create-account.php">Create Account</a>
-				</div>
-				<script type="text/javascript">
-					showInfo();
-				</script>
-			</div>
-			-->
-			
-		</article>
-		<aside>
-		
-		</aside>
-		<footer>
-		
-		</footer>
-		
+			?>	
+		</article>		
 	</body>
 </html>
