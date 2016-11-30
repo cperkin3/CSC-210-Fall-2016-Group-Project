@@ -15,17 +15,17 @@
 			<div class="login-top">
 				<div id="logged-in">
 					<span id="welcome-name"></span>
-					<form method="POST" action="cgi-bin/logout.py">
+					<form method="POST" action="../cgi-bin/logout.py">
 						<input type="submit" value="Log out"/>
 					</form>
 				</div>
 				<div id="logged-out">
-					<form method="POST" action="cgi-bin/login.py">
+					<form method="POST" action="../cgi-bin/login.py">
 						Username: <input type="text" name="username" required/> 
 						Password: <input type="password" name="password" required/>
 						<input type="submit" value="Log in!"/>
 					</form>
-					<a href="create-account.php">Create Account</a>
+					<a href="../create-account.php">Create Account</a>
 				</div>
 				<script type="text/javascript">
 					showHeader();
@@ -51,34 +51,43 @@
 				</li>
 			</ul>
 		</nav>
+		
 		<article class="forum">
-			<form method="post" action="../cgi-bin/search-wiki.py" id="wiki-search-bar">
-				<input type="text" name="search-bar" id="wiki-search-text-entry" required/>
-				<input type="submit" id="wiki-search-submit" value="SEARCH"/>
+			<h1>Create New Page</h1>
+			<br>
+			Think a page is missing? Make it yourself! Please enter the following information and click 'Create!'.
+			<br>
+			<form method="post" action="../cgi-bin/create-wiki-page.py">
+				Category: <select name="category" required>
+					<?php
+						$servername = "localhost";
+						$username = "root";
+						$password = "mysql";
+						$dbname = "Thrones_Database";
+
+						try {
+							$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+							// Set the PDO error mode to exception
+							$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+							$stmt = $conn->prepare('SELECT name FROM Wiki_Categories;');
+							$stmt->execute();
+
+							while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+								echo "<option value=\"" . $row['name'] . "\"> " . $row['name'] . "</option>";
+							}
+
+						} catch (PDOException $e) {
+							echo "Error: " . $e->getMessage() . "<br/>";
+							die();
+						}
+					?>
+				</select>
+				Title: <input type="text" name="title" required/><br/>
+				Page Content: <textarea cols="40" rows="5" name="content" required></textarea><br/>
+				<input type="submit" value="Create!"/>
 			</form>
-			<h1>Game of Thrones / A Song of Ice and Fire Wiki</h1>
 		</article>
-		<aside class="nav-aside">
-			<ul>
-				<li>
-					<a class="current" href="">Wiki Home</a>
-				</li>
-				<li>
-					<a href="view-wiki-category.php?category=People">People</a>
-				</li>
-				<li>
-					<a href="view-wiki-category.php?category=Places">Places</a>
-				</li>
-				<li>
-					<a href="view-wiki-category.php?category=Events">Events</a>
-				</li>
-				<li>
-					<a href="view-wiki-category.php?category=Miscellaneous">Miscellaneous</a>
-				</li>
-				<li>
-					<a href="create-wiki-page.php">Create New Wiki Page</a>
-				</li>
-			</ul>
-		</aside>	
 	</body>
 </html>

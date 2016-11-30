@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS Wiki_Categories (
 CREATE TABLE IF NOT EXISTS Wiki_Pages (
 	title					CHAR(40) PRIMARY KEY,
 	category_name			CHAR(40) NOT NULL, -- foreign key
-	content					CHAR(40) NOT NULL,
+	content					TEXT NOT NULL,
 	user_last_edited_by		CHAR(40) NOT NULL, -- foreign key
 	last_edited_datetime	DATETIME NOT NULL, -- automatically populated
 
