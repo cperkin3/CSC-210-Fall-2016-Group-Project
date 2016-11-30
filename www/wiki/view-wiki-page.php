@@ -42,11 +42,6 @@
 		<!-- JavaScript --> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="../js/header.js"></script>
-
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script language="javascript" type="text/javascript">
-
-
 	</head>
 
 	<body>
@@ -90,12 +85,37 @@
 				</li>
 			</ul>
 		</nav>
-		
-		<article class="wiki">
+		<aside class="nav-aside">
+			<ul>
+				<li>
+					<a href="wiki.php">Wiki Home</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=People">People</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=Places">Places</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=Events">Events</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=Miscellaneous">Miscellaneous</a>
+				</li>
+				<li>
+					<a href="create-wiki-page.php">Create New Wiki Page</a>
+				</li>
+			</ul>
+		</aside>	
+		<article class="forum">
 			
 			<h3><?php echo $page_title ?></h3>
 			<hr>
-			put the rest of the stuff here, since I can't test it yet
+			<?php echo $page_content ?>
+			<hr>
+			This page is in category <a href="view-wiki-category.php?category=<?php echo $page_category ?>"><?php echo $page_category ?></a>
+			<br>
+			Page last edited by <?php echo $last_editor ?> at <?php echo $edited_datetime ?>
 			
 		</article>
 	</body>

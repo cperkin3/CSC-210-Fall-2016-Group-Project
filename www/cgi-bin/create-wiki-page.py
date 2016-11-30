@@ -72,6 +72,28 @@ print '''<html>
 			</li>
 		</ul>
 	</nav>
+	<aside class="nav-aside">
+			<ul>
+				<li>
+					<a href="../wiki/wiki.php">Wiki Home</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=People">People</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Places">Places</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Events">Events</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Miscellaneous">Miscellaneous</a>
+				</li>
+				<li>
+					<a href="../wiki/create-wiki-page.php">Create New Wiki Page</a>
+				</li>
+			</ul>
+		</aside>	
 	<BR><BR><BR><BR><BR>
 '''
 

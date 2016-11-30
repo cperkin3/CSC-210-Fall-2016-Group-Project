@@ -6,7 +6,7 @@
 	$password = "mysql";
 	$dbname = "Thrones_Database";
 	
-	$name = $_GET['name'];
+	$name = $_GET['category'];
 	
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
@@ -41,11 +41,6 @@
 		<!-- JavaScript --> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
 		<script src="../js/header.js"></script>
-
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	<script language="javascript" type="text/javascript">
-
-
 	</head>
 
 	<body>
@@ -89,14 +84,34 @@
 				</li>
 			</ul>
 		</nav>
-		
-		<article class="wiki">
+		<aside class="nav-aside">
+			<ul>
+				<li>
+					<a href="wiki.php">Wiki Home</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=People">People</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=Places">Places</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=Events">Events</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=Miscellaneous">Miscellaneous</a>
+				</li>
+				<li>
+					<a href="create-wiki-page.php">Create New Wiki Page</a>
+				</li>
+			</ul>
+		</aside>	
+		<article class="forum">
 			
 			<h3>Pages in category <?php echo $name ?>:</h3>
 			<ul>
 				<?php echo $links_list ?>
 			</ul>
-			put the rest of the stuff here, since I can't test it yet
 			
 		</article>
 	</body>
