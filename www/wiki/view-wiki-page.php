@@ -6,14 +6,14 @@
 	$password = "mysql";
 	$dbname = "Thrones_Database";
 	
-	$title = $_GET['title']
+	$title = $_GET['title'];
 	
 	try {
 		$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 		// Set the PDO error mode to exception
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-		$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE title = $ $title");
+		$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE title = '$title'");
 		$stmt->execute();
 		
 		$row = $stmt->fetch(PDO::FETCH_ASSOC);
