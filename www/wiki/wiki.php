@@ -51,19 +51,34 @@
 				</li>
 			</ul>
 		</nav>
-		<article>
+		<article class="forum">
 			<form method="post" action="../cgi-bin/search-wiki.py" id="wiki-search-bar">
 				<input type="text" name="search-bar" id="wiki-search-text-entry" required/>
 				<input type="submit" id="wiki-search-submit" value="SEARCH"/>
 			</form>
 			<h1>Game of Thrones / A Song of Ice and Fire Wiki</h1>
 		</article>
-		<aside>
-		
-		</aside>
-		<footer>
-		
-		</footer>
-		
+		<aside class="nav-aside">
+			<ul>
+				<li>
+					<a class="current" href="">Wiki Home</a>
+				</li>
+				<li>
+					<a href="view-wiki-category.php?category=People">People</a>
+				</li>
+				<li>
+					<a href="view_category.php?category=Places">Places</a>
+				</li>
+				<li>
+					<a href="view_category.php?category=Events">Events</a>
+				</li>
+				<li>
+					<a href="view_category.php?category=Miscellaneous">Miscellaneous</a>
+				</li>
+				<li>
+					<a href="create-wiki-page.php">Create New Wiki Page</a>
+				</li>
+			</ul>
+		</aside>	
 	</body>
 </html>
