@@ -166,7 +166,7 @@ function parseResponse ( ) {
 				<a class="current" href="forum.php">Forum</a>
 			</li>	
 			<li>
-				<a href="../wiki.php">Wiki</a>
+				<a href="../wiki/wiki.php">Wiki</a>
 			</li>
 			<li>
 				<a href="../about.php">About</a>

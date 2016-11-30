@@ -35,19 +35,19 @@
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
 			<ul>
 				<li>
-					<a href="../index.php">Home</a>
+					<a href="index.php">Home</a>
 				</li>
 				<li>
-					<a href="../forum.php">Forum</a>
+					<a href="forum/forum.php">Forum</a>
 				</li>	
 				<li>
-					<a href="../wiki.php">Wiki</a>
+					<a href="wiki/wiki.php">Wiki</a>
 				</li>
 				<li>
-					<a href="../about.php">About</a>
+					<a href="about.php">About</a>
 				</li>
 				<li>
-					<a href="../user-account.php">User Account</a>
+					<a href="user-account.php">User Account</a>
 				</li>
 			</ul>
 		</nav>

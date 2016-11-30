@@ -3,12 +3,12 @@
 	<head>
 		<title>CSC 210 Project</title>
 		<!-- CSS -->
-		<link rel="stylesheet" type="text/css" href="css/nav-bar.css">
-		<link rel="stylesheet" type="text/css" href="css/login-bar.css">
-		<link rel="stylesheet" type="text/css" href="css/styles.css">
+		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
+		<link rel="stylesheet" type="text/css" href="../css/styles.css">
 		<!-- JavaScript --> 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-		<script src="js/header.js"></script>
+		<script src="../js/header.js"></script>
 	</head>
 	<body>
 		<header> 
@@ -35,24 +35,28 @@
 		<nav><!-- All Top-level .html files should have exactly the same header contents -->
 			<ul>
 				<li>
-					<a href="index.php">Home</a>
+					<a href="../index.php">Home</a>
 				</li>
 				<li>
-					<a href="forum/forum.php">Forum</a>
+					<a href="../forum/forum.php">Forum</a>
 				</li>	
 				<li>
 					<a class="current" href="wiki.php">Wiki</a>
 				</li>
 				<li>
-					<a href="about.php">About</a>
+					<a href="../about.php">About</a>
 				</li>
 				<li>
-					<a href="user-account.php">User Account</a>
+					<a href="../user-account.php">User Account</a>
 				</li>
 			</ul>
 		</nav>
 		<article>
-			<h1>TODO: Add title</h1>
+			<form method="post" action="cgi-bin/search-wiki.py">
+				<input type="text" name="search-bar" required/>
+				<input type="submit" value="SEARCH"/>
+			</form>
+			<h1>Game of Thrones / A Song of Ice and Fire Wiki</h1>
 		</article>
 		<aside>
 		

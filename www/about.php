@@ -41,7 +41,7 @@
 					<a href="forum/forum.php">Forum</a>
 				</li>	
 				<li>
-					<a href="wiki.php">Wiki</a>
+					<a href="wiki/wiki.php">Wiki</a>
 				</li>
 				<li>
 					<a class="current" href="about.php">About</a>
