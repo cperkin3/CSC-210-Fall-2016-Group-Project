@@ -73,7 +73,7 @@
 				</li>
 			</ul>
 		</aside>
-		<article class="wiki">
+		<article class="forum">
 			<h1>Edit Wiki Page</h1>
 			<br>
 			Make your edits, and then hit 'Submit'.
