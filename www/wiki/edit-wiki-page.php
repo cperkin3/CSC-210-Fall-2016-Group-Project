@@ -73,7 +73,7 @@
 				</li>
 			</ul>
 		</aside>
-		<article class="wiki">
+		<article class="forum">
 			<h1>Edit Wiki Page</h1>
 			<br>
 			Make your edits, and then hit 'Submit'.
@@ -109,10 +109,7 @@
 								$subid = $element->id
 								$subcontent = $element->innertext;
 
-								echo "<subsection>";
-								echo "<h3>" . $subid . "</h3>";
-								echo "<textarea rows=\"4\" cols=\"50\">" . $subcontent . "</textarea>";
-								echo "</subsection>";
+								echo $subid . ": <textarea cols='40' rows='5' name='" . $subid . "' value='" . $subcontent . "'></textarea><br/>";
 							}
 						}
 
