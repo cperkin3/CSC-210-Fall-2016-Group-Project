@@ -16,7 +16,7 @@ print 'Content-Type: text/html'
 print
 print '''<html>
   <head>
-    <title>[final site name]</title>
+    <title>CSC 210 Group Project</title>
 	<!-- CSS -->
 		<link rel="stylesheet" type="text/css" href="../css/nav-bar.css">
 		<link rel="stylesheet" type="text/css" href="../css/login-bar.css">
@@ -66,7 +66,6 @@ print '''<html>
 			</li>
 		</ul>
 	</nav>
-	<BR><BR><BR><BR><BR>
 '''
 
 conn = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
@@ -79,8 +78,69 @@ if not 'search-bar' in new_account:
 	'''
 	sys.exit(0)
 
-search_criteria = new_account['search-bar']
+print '''<aside class="nav-aside">
+			<ul>
+				<li>
+					<a href="../wiki/wiki.php">Wiki Home</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=People">People</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Places">Places</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Events">Events</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Miscellaneous">Miscellaneous</a>
+				</li>
+				<li>
+					<a href="../wiki/create-wiki-page.php">Create New Wiki Page</a>
+				</li>
+			</ul>
+		</aside>	
+		<article class="forum">
+			<h2>Search Results for:'''
 
-query = "SELECT * FROM Wiki_Pages WHERE 'category_name' LIKE ''"
+given_search = new_account["search-bar"].value
+search_criteria = "%" + given_search + "%"
 
+print given_search + "</h2>"
 
+query1 = "SELECT * FROM Wiki_Pages WHERE title LIKE %s AND category_name='People'"
+query2 = "SELECT * FROM Wiki_Pages WHERE title LIKE %s AND category_name='Places'"
+query3 = "SELECT * FROM Wiki_Pages WHERE title LIKE %s AND category_name='Events'"
+query4 = "SELECT * FROM Wiki_Pages WHERE title LIKE %s AND category_name='Miscellaneous'"
+
+cursor.execute(query1, (search_criteria, ))
+print "<h3>pages in People</h3>"
+row = cursor.fetchone()
+while row is not None:
+	print "<p><a href='../wiki/view-wiki-page.php?title=" + row[0]+ "'>" + row[0] + "</a></p>"
+	row = cursor.fetchone()
+	
+cursor.execute(query2, (search_criteria, ))
+print "<h3>pages in Places</h3>"
+row = cursor.fetchone()
+while row is not None:
+	print "<p><a href='../wiki/view-wiki-page.php?title=" + row[0]+ "'>" + row[0] + "</a></p>"
+	row = cursor.fetchone()
+	
+cursor.execute(query3, (search_criteria, ))
+print "<h3>pages in Events</h3>"
+row = cursor.fetchone()
+while row is not None:
+	print "<p><a href='../wiki/view-wiki-page.php?title=" + row[0]+ "'>" + row[0] + "</a></p>"
+	row = cursor.fetchone()
+
+cursor.execute(query4, (search_criteria, ))
+print "<h3>pages in Miscellaneous</h3>"
+row = cursor.fetchone()
+while row is not None:
+	print "<p><a href='../wiki/view-wiki-page.php?title=" + row[0]+ "'>" + row[0] + "</a></p>"
+	row = cursor.fetchone()
+	
+print '''</article>
+	  </body>
+	</html>'''
