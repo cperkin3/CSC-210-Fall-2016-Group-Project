@@ -127,8 +127,9 @@
 				var subcontent_label = document.createElement('div');
 				subcontent_label.innerHTML = "Subsection Content: ";
 				home.append(subcontent_label);
-				var subcontent_input = document.createElement('input');
-				subcontent_input.setAttribute("type","text");
+				var subcontent_input = document.createElement('textarea');
+				subcontent_input.setAttribute("cols","40");
+				subcontent_input.setAttribute("rows","5");
 				subcontent_input.setAttribute("name", "subc_" + x.toString());
 				x++;
 				home.appendChild(subcontent_input);

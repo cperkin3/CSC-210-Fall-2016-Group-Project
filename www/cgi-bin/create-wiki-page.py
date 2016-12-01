@@ -170,7 +170,7 @@ elif 'logged_in' in cook_str:
 
 # If user not logged in, print error and quit program
 else:
-	print "Sorry, you must be logged in to create a new thread.\n"
+	print "Sorry, you must be logged in to create a new page.\n"
 	
 print '''
   </body>
