@@ -106,9 +106,28 @@
 					?>
 				</select>
 				Title: <input type="text" name="title" required/><br/>
-				Page Content: <textarea cols="40" rows="5" name="content" required></textarea><br/>
+				Intro Content: <textarea cols="40" rows="5" name="content" required></textarea><br/>
+				<button onclick="addSubsection()">Add subsection</button>
+				<div id="Subsections">
+					
+				</div>
 				<input type="submit" value="Create!"/>
 			</form>
 		</article>
+		<script type="text/javascript" language="javascript">
+			function addSubsection() {
+				var home = document.getElementById('Subsections');
+				var subtitle_input = document.createElement('input');
+				subtitle_input.setAttribute("type","text");
+				// Set up auto-increment ???
+				subtitle_input.setAttribute("name",);
+				home.appendChild(subtitle_input);
+				var subcontent_input = document.createElement('input');
+				subcontent_input.setAttribute("type","text");
+				// Auto-increment here, too
+				subcontent_input.setAttribute("name",);
+				home.appendChild(subtitle_input);
+			}
+		</script>
 	</body>
 </html>
