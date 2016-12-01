@@ -54,19 +54,19 @@
 		<aside class="nav-aside">
 			<ul>
 				<li>
-					<a class="current" href="">Wiki Home</a>
+					<a href="wiki.php">Wiki Home</a>
 				</li>
 				<li>
 					<a href="view-wiki-category.php?category=People">People</a>
 				</li>
 				<li>
-					<a href="view_category.php?category=Places">Places</a>
+					<a href="view-wiki-category.php?category=Places">Places</a>
 				</li>
 				<li>
-					<a href="view_category.php?category=Events">Events</a>
+					<a href="view-wiki-category.php?category=Events">Events</a>
 				</li>
 				<li>
-					<a href="view_category.php?category=Miscellaneous">Miscellaneous</a>
+					<a href="view-wiki-category.php?category=Miscellaneous">Miscellaneous</a>
 				</li>
 				<li>
 					<a href="create-wiki-page.php">Create New Wiki Page</a>
@@ -116,8 +116,11 @@
 									echo $h3->outertext;
 								}
 
+								// Subsection content
 								foreach($subsections->find('div') as $subsection_content) {
-									echo "<textarea cols='40' rows='5' name='subsection_content' value='$subsection_content->innertext'></textarea>";
+									echo "<textarea cols='40' rows='5' name='subsection_content'>";
+									echo $subsection_content->innertext;
+									echo "</textarea>";
 								}
 							}
 						}
