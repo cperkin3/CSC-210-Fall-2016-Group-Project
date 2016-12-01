@@ -15,12 +15,12 @@
 			<div class="login-top">
 				<div id="logged-in">
 					<span id="welcome-name"></span>
-					<form method="POST" action="cgi-bin/logout.py">
+					<form method="POST" action="../cgi-bin/logout.py">
 						<input type="submit" value="Log out"/>
 					</form>
 				</div>
 				<div id="logged-out">
-					<form method="POST" action="cgi-bin/login.py">
+					<form method="POST" action="../cgi-bin/login.py">
 						Username: <input type="text" name="username" required/> 
 						Password: <input type="password" name="password" required/>
 						<input type="submit" value="Log in!"/>
