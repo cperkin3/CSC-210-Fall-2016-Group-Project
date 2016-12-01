@@ -78,8 +78,11 @@
 			<br>
 			Make your edits, and then hit 'Submit'.
 			<br>
+			<br>
 			<form method="post" action="../cgi-bin/edit-wiki-page.py">
 				<?php
+					include_once '../includes/simple_html_dom.php';
+
 					$servername = "localhost";
 					$username = "root";
 					$password = "mysql";
@@ -91,49 +94,35 @@
 						// Set the PDO error mode to exception
 						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-						$title = $_GET['title'];
+						$title = $_POST['title'];
 
-						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE title = '" . $title . "';");
+						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE title = '$title';");
 						$stmt->execute();
 
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
 							echo "Category: " . $row['category_name'];
-							echo "Title: " . $title;
+							echo "<br>";
+							echo "Title: $title";
 							echo "<br>";
 
 							// Parse through html content and display each subsection
 							$content = $row['content'];
-							$html = file_get_html($content);
+							$html = str_get_html($content);
 
 							// Get each subsection
-							foreach ($html->find('div[id=Subsections]');  as $subsections) {
+							foreach ($html->find('div[class=subsection]')  as $subsections) {
 								// Subsection title
-								echo "<div> Subsection Title:";
-								/*foreach($subsections->find('div[id=subsection_title]') as $subsection_title) {
-									echo $subsection_title->innertext . ":";
-								}*/
-
-								// Subsection title input
-								foreach($subsections->find('input[id=subsection_title_input]') as $subsection_title_input) {
-									echo $subsection_title_input->outertext;
+								foreach($subsections->find('h3') as $h3) {
+									echo $h3->outertext;
 								}
 
-								echo "</div>";
-
-								// Subsection content
-								echo "<div> Subsection Content:";
-								/*foreach($subsections->find('div[id=subsection_content]') as $subsection_content) {
-									echo $subsection_content->innertext . ":";
-								}*/
-
-								// Subsection content input
-								foreach($subsections->find('input[id=subsection_content_input]') as $subsection_content_input) {
-									echo $subsection_content_input->outertext;
+								foreach($subsections->find('div') as $subsection_content) {
+									echo "<input type='text' name='subsection_content' value='$subsection_content->innertext'>";
 								}
-
-								echo "</div>";
 							}
 						}
+
+						echo "<br><br>";
 
 					} catch (PDOException $e) {
 						echo "Error: " . $e->getMessage() . "<br/>";
