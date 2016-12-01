@@ -118,8 +118,9 @@ elif 'logged_in' in cook_str:
 			content += "<div class=\"subsection\">"
 			content += "<h3>"
 			content += new_page[key].value
-			content += "</h3>"
+			content += "</h3><div>"
 			content += new_page["subc_"+x.group()].value
+			content += "</div></div>"
 		else:
 			pass
 
