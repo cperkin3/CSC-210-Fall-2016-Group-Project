@@ -72,7 +72,29 @@ print '''<html>
 			</li>
 		</ul>
 	</nav>
-	<BR><BR><BR><BR><BR>
+	<aside class="nav-aside">
+		<ul>
+			<li>
+				<a href="../forum/forum.php">Forum Home</a>
+			</li>
+			<li>
+				<a href="../forum/view_category.php?category=General">General</a>
+			</li>
+			<li>
+				<a href="../forum/view_category.php?category=Characters">Characters</a>
+			</li>
+			<li>
+				<a href="../forum/view_category.php?category=Differences">Differences</a>
+			</li>
+			<li>
+				<a href="../forum/view_category.php?category=Other">Other</a>
+			</li>
+			<li>
+				<a href="../forum/create-thread.php">Create New Thread</a>
+			</li>
+		</ul>
+	</aside>
+	<br><br><br><br><br>
 '''
 
 # If user not logged in, print error and quit program
@@ -119,6 +141,7 @@ elif 'logged_in' in cook_str:
 	thread_query = 'INSERT INTO Forum_Threads (category_name, title, user_created_by, created_datetime) VALUES (%s, %s, %s, %s)'
 	post_query = 'INSERT INTO Forum_Posts (thread_id, content, user_post_by, created_datetime) VALUES (%s, %s, %s, %s)'
 
+	thread_id = 0
 	try:
 		# Insert thread
 		cursor.execute(thread_query, (category, title, user, current_time))
@@ -142,6 +165,7 @@ elif 'logged_in' in cook_str:
 	conn.close()
 
 	print "<h1>You have successfully created a new thread.</h1>"
+	print "View it <a href=\"../forum/viewthread.php?id=" + str(thread_id) + "\">Here</a>"
 
 # If user not logged in, print error and quit program
 else:
