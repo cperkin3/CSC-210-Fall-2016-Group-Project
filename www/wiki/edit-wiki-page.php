@@ -105,12 +105,16 @@
 							$content = $row['content'];
 							$html = file_get_html($content);
 
-							foreach ($html->find('subsection') as $element) {
-								$subid = $element->id;
-								echo "found";
-								$subcontent = $element->innertext;
+							foreach ($html->find('div[class=subsection]');  as $element) {
+								// Get subsection name
+								foreach($element->find('h3') as $name) {
+									echo $name->plaintext . ":";
+								}
 
-								echo $subid . ": <textarea cols='40' rows='5' name='" . $subid . "' value='" . $subcontent . "'></textarea><br/>";
+								//$subcontent = $element->innertext;
+								$textblock = $element->find('text');
+
+								//echo $subid . ": <textarea cols='40' rows='5' name='" . $subid . "' value='" . $subcontent . "'></textarea><br/>";
 							}
 						}
 
