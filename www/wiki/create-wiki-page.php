@@ -106,27 +106,33 @@
 					?>
 				</select>
 				Title: <input type="text" name="title" required/><br/>
-				Intro Content: <textarea cols="40" rows="5" name="content" required></textarea><br/>
-				<button onclick="addSubsection()">Add subsection</button>
-				<div id="Subsections">
-					
-				</div>
+				<!-- Intro Content: <textarea cols="40" rows="5" name="content" required></textarea><br/> -->
+				<div id="Subsections"></div>
+				<button onclick="addSubsection()" type="button">Add subsection</button><br>
 				<input type="submit" value="Create!"/>
 			</form>
 		</article>
 		<script type="text/javascript" language="javascript">
+			var x = 0;
 			function addSubsection() {
 				var home = document.getElementById('Subsections');
+				var subtitle_label = document.createElement('div');
+				subtitle_label.innerHTML = "Subsection Title: ";
+				home.append(subtitle_label);
 				var subtitle_input = document.createElement('input');
 				subtitle_input.setAttribute("type","text");
-				// Set up auto-increment ???
-				subtitle_input.setAttribute("name",);
+				subtitle_input.setAttribute("name","subt_" + x.toString());
 				home.appendChild(subtitle_input);
+				home.appendChild(document.createElement('br'));
+				var subcontent_label = document.createElement('div');
+				subcontent_label.innerHTML = "Subsection Content: ";
+				home.append(subcontent_label);
 				var subcontent_input = document.createElement('input');
 				subcontent_input.setAttribute("type","text");
-				// Auto-increment here, too
-				subcontent_input.setAttribute("name",);
-				home.appendChild(subtitle_input);
+				subcontent_input.setAttribute("name", "subc_" + x.toString());
+				x++;
+				home.appendChild(subcontent_input);
+				home.appendChild(document.createElement('br'));
 			}
 		</script>
 	</body>

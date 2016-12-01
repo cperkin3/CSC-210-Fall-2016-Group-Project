@@ -111,7 +111,17 @@ elif 'logged_in' in cook_str:
 	# Grab Entered Data
 	category = new_page['category'].value
 	title = new_page['title'].value
-	content = new_page['content'].value
+	content = ""
+	for key in sorted(new_page.keys()):
+		if re.match("subt_\d+", key) != None:
+			x = re.search("\d+",key)
+			content += "<div class=\"subsection\">"
+			content += "<h3>"
+			content += new_page[key].value
+			content += "</h3>"
+			content += new_page["subc_"+x.group()].value
+		else:
+			pass
 
 	user = cookie['logged_in'].value
 	thread_id = 0
@@ -147,7 +157,7 @@ elif 'logged_in' in cook_str:
 		conn.commit()
 	except:
 		conn.rollback()
-		print """An Error Occured while executing MySQL. Try Re-submitting your information. INSERT
+		print """An Error Occured while executing MySQL. If you're sure that this page doesn't exist yet, you can try re-submitting your information.
 		  </body>
 		</html>"""
 		sys.exit(0)
