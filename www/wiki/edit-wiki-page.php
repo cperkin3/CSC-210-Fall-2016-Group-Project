@@ -117,7 +117,7 @@
 								}
 
 								foreach($subsections->find('div') as $subsection_content) {
-									echo "<input type='text' name='subsection_content' value='$subsection_content->innertext'>";
+									echo "<textarea cols="40" rows="5" name='subsection_content' value='$subsection_content->innertext'>";
 								}
 							}
 						}
