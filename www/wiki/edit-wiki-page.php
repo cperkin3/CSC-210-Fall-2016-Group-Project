@@ -116,8 +116,11 @@
 									echo $h3->outertext;
 								}
 
+								// Subsection content
 								foreach($subsections->find('div') as $subsection_content) {
-									echo "<textarea cols='40' rows='5' name='subsection_content' value='$subsection_content->innertext'></textarea>";
+									echo "<textarea cols='40' rows='5' name='subsection_content'>";
+									echo $subsection_content->innertext;
+									echo "</textarea>";
 								}
 							}
 						}
