@@ -107,14 +107,7 @@
 								Update Value: <input type="text" name="favorite_character" required/>
 								<input type="submit" value="Change"/>
 							</form>
-							<BR/>';
-						echo "Proflie Picture: $profile_pic";
-						echo "<BR />";
-						echo '<form method="post" action="cgi-bin/update-user-field.py">
-								Update Value: <input type="text" name="profile_pic" required/>
-								<input type="submit" value="Change"/>
-							</form>
-							<BR/>';
+							<BR/>'; 
 						echo "Bio: $bio";
 						echo "<BR />";
 						echo '<form method="post" action="cgi-bin/update-user-field.py">
