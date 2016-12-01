@@ -105,16 +105,33 @@
 							$content = $row['content'];
 							$html = file_get_html($content);
 
-							foreach ($html->find('div[class=subsection]');  as $element) {
-								// Get subsection name
-								foreach($element->find('h3') as $name) {
-									echo $name->plaintext . ":";
+							// Get each subsection
+							foreach ($html->find('div[id=Subsections]');  as $subsections) {
+								// Subsection title
+								echo "<div> Subsection Title:";
+								/*foreach($subsections->find('div[id=subsection_title]') as $subsection_title) {
+									echo $subsection_title->innertext . ":";
+								}*/
+
+								// Subsection title input
+								foreach($subsections->find('input[id=subsection_title_input]') as $subsection_title_input) {
+									echo $subsection_title_input->outertext;
 								}
 
-								//$subcontent = $element->innertext;
-								$textblock = $element->find('text');
+								echo "</div>";
 
-								//echo $subid . ": <textarea cols='40' rows='5' name='" . $subid . "' value='" . $subcontent . "'></textarea><br/>";
+								// Subsection content
+								echo "<div> Subsection Content:";
+								/*foreach($subsections->find('div[id=subsection_content]') as $subsection_content) {
+									echo $subsection_content->innertext . ":";
+								}*/
+
+								// Subsection content input
+								foreach($subsections->find('input[id=subsection_content_input]') as $subsection_content_input) {
+									echo $subsection_content_input->outertext;
+								}
+
+								echo "</div>";
 							}
 						}
 
