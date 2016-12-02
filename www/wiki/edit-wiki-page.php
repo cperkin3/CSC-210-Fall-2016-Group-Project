@@ -132,7 +132,7 @@
 
 						echo "<br><br>";
 
-						echo "<input type='hidden' name='title' value='$title>'";
+						echo "<input type='hidden' name='title' value='$title'>";
 
 					} catch (PDOException $e) {
 						echo "Error: " . $e->getMessage() . "<br/>";
