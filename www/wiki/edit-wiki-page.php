@@ -140,12 +140,12 @@
 					}
 				?>
 				<div id="Subsections"></div>
-				<button onclick="addSubsection()" type="button">Add subsection</button><br>
+				<button onclick="addSubsection()" type="button">Add Subsection</button><br>
 				<input type="submit" value="Submit"/>
 			</form>
 		</article>
 		<script type="text/javascript" language="javascript">
-			var x = <?php echo $x ?>;
+			var x = <?php echo $x; ?>;
 			function addSubsection() {
 				var home = document.getElementById('Subsections');
 				var subtitle_label = document.createElement('div');
