@@ -115,9 +115,12 @@
 							foreach ($html->find('div[class=subsection]')  as $subsections) {
 								// Subsection title
 								foreach($subsections->find('h3') as $h3) {
-									echo "<div name='subt_" . $x . "'>";
-									echo $h3->innertext;
-									echo "</div>";
+									//echo "<div name='subt_" . $x . "'>";
+									//echo $h3->innertext;
+									//echo "</div>";
+
+									echo "<div>Subsection Title: </div>"
+									echo "<input type='text' name='subt_" . $x . "'>";
 								}
 
 								// Subsection content
