@@ -84,21 +84,24 @@ try:
 		cursor.execute(query, (row[0], ))
 		row = cursor.fetchone()
 		
-	query = "SELECT * FROM Forum_Threads WHERE user_created_by = %s"
-	cursor.execute(query, (user, ))
-	row = cursor.fetchone()
-	while row is not None:
-		query = "UPDATE Forum_Threads SET user_created_by = %s"
-		cursor.execute(query, (row[0], ))
-		row = cursor.fetchone()
+	# query = "SELECT * FROM Forum_Threads WHERE user_created_by = %s"
+	# cursor.execute(query, (user, ))
+	# row = cursor.fetchone()
+	# while row is not None:
+		# query = "UPDATE Forum_Threads SET user_created_by = %s"
+		# cursor.execute(query, (row[0], ))
+		# row = cursor.fetchone()
 		
-	query = "SELECT * FROM Wiki_Pages WHERE user_last_edited_by = %s"
+	# query = "SELECT * FROM Wiki_Pages WHERE user_last_edited_by = %s"
+	# cursor.execute(query, (user, ))
+	# row = cursor.fetchone()
+	# while row is not None:
+		# query = "UPDATE Wiki_Pages SET user_last_edited_by = %s"
+		# cursor.execute(query, (row[0], ))
+		# row = cursor.fetchone()
+	
+	query = "DELETE FROM Users WHERE username=%s"
 	cursor.execute(query, (user, ))
-	row = cursor.fetchone()
-	while row is not None:
-		query = "UPDATE Wiki_Pages SET user_last_edited_by = %s"
-		cursor.execute(query, (row[0], ))
-		row = cursor.fetchone()
 	
 	conn.commit()
 	
