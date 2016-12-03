@@ -104,7 +104,7 @@
 							echo "<br>";
 							echo "Title: $title";
 							echo "<br>";
-							echo "<div id="Subsections">";
+							echo "<div id='Subsections'>";
 
 							// Parse through html content and display each subsection
 							$content = $row['content'];
