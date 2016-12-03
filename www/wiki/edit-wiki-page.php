@@ -104,6 +104,7 @@
 							echo "<br>";
 							echo "Title: $title";
 							echo "<br>";
+							echo "<div id="Subsections">";
 
 							// Parse through html content and display each subsection
 							$content = $row['content'];
@@ -128,6 +129,8 @@
 
 								$x++;
 							}
+
+							echo "</div>";
 						}
 
 						echo "<br><br>";
@@ -139,7 +142,6 @@
 						die();
 					}
 				?>
-				<div id="Subsections"></div>
 				<button onclick="addSubsection()" type="button">Add Subsection</button><br>
 				<input type="submit" value="Submit"/>
 			</form>
