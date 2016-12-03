@@ -108,13 +108,6 @@
 								<input type="submit" value="Change"/>
 							</form>
 							<BR/>';
-						echo "Proflie Picture: $profile_pic";
-						echo "<BR />";
-						echo '<form method="post" action="cgi-bin/update-user-field.py">
-								Update Value: <input type="text" name="profile_pic" required/>
-								<input type="submit" value="Change"/>
-							</form>
-							<BR/>';
 						echo "Bio: $bio";
 						echo "<BR />";
 						echo '<form method="post" action="cgi-bin/update-user-field.py">
@@ -129,12 +122,17 @@
 					die();
 				}
 			}
-			?>	
+			?>
+			
+			<form method="POST" action="cgi-bin/delete-account.py">
+				<button type="submit">Delete Account</button>
+			</form>
+			
 		</article>	
 		
 		<aside>
 			<?php 
-
+/*
 			session_start();
 
 			if(!isset($_COOKIE['logged_in'])) {
@@ -167,9 +165,10 @@
 				$join_date = $row['join_date'];
 				$profile_last_updated = $row['profile_last_updated'];
 				$favorite_character = $row['favorite_character'];
-}
+		}
+*/
 	?>
-
+<!--
 	<h2><?php echo $username; ?> profile </h2><br/>
 	<table>
 		<tr><td> username: </td><td> <?php echo $username; ?></td></tr>
@@ -181,7 +180,7 @@
 		<tr><td> profile_last_updated: </td><td> <?php echo $profile_last_updated; ?></td></tr>
 		<tr><td> favorite_character: </td><td> <?php echo $favorite_character; ?></td></tr>
 
-	</table>
+	</table> -->
 		</aside>	
 	</body>
 </html>
