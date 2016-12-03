@@ -119,7 +119,7 @@
 									//echo $h3->innertext;
 									//echo "</div>";
 
-									echo "<div>Subsection Title: </div>"
+									echo "<div>Subsection Title: </div>";
 									echo "<input type='text' name='subt_" . $x . "'>";
 								}
 
