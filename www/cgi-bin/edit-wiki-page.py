@@ -112,9 +112,7 @@ elif 'logged_in' in cook_str:
 	title = edit_page['title'].value
 	content = ""
 	for key in sorted(edit_page.keys()):
-		print key
 		if re.match("subt_\d+", key) != None:
-			print "found something"
 			x = re.search("\d+",key)
 			content += "<div class=\"subsection\">"
 			content += "<h3>"
@@ -144,17 +142,7 @@ elif 'logged_in' in cook_str:
 
 	current_time = datetime.datetime.now()
 
-	print content
-	print ""
-	print user
-	print ""
-	print current_time
-	print ""
-
 	query = "UPDATE Wiki_Pages SET content = %s, user_last_edited_by = %s, last_edited_datetime = %s WHERE title = " + "'" + title + "';";
-
-	print query
-	print ""
 
 	try:
 		# Update page

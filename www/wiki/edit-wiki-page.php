@@ -103,7 +103,7 @@
 							echo "Category: " . $row['category_name'];
 							echo "<br>";
 							echo "Title: $title";
-							echo "<br>";
+							echo "<br><br>";
 							echo "<div id='Subsections'>";
 
 							// Parse through html content and display each subsection
@@ -115,16 +115,13 @@
 							foreach ($html->find('div[class=subsection]')  as $subsections) {
 								// Subsection title
 								foreach($subsections->find('h3') as $h3) {
-									//echo "<div name='subt_" . $x . "'>";
-									//echo $h3->innertext;
-									//echo "</div>";
-
-									echo "<div>Subsection Title: </div>";
-									echo "<input type='text' name='subt_" . $x . "'>";
+									echo "<div>Subsection Title: " . "</div>";
+									echo "<input type='text' name='subt_" . $x . "' value='" . $h3->innertext . "'>";
 								}
 
 								// Subsection content
 								foreach($subsections->find('div') as $subsection_content) {
+									echo "<div>Subsection Content: " . "</div>";
 									echo "<textarea cols='40' rows='5' name='subc_" . $x . "'>";
 									echo $subsection_content->innertext;
 									echo "</textarea>";
