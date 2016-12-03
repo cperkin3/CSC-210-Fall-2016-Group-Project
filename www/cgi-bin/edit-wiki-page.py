@@ -112,6 +112,7 @@ elif 'logged_in' in cook_str:
 	title = edit_page['title'].value
 	content = ""
 	for key in sorted(edit_page.keys()):
+		print key
 		if re.match("subt_\d+", key) != None:
 			print "found something"
 			x = re.search("\d+",key)
