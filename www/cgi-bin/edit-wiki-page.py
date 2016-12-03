@@ -16,7 +16,7 @@ cgitb.enable()
 
 cook_str = os.environ.get('HTTP_COOKIE')
 
-new_thread = cgi.FieldStorage()
+edit_page = cgi.FieldStorage()
 
 print 'Content-Type: text/html'
 print
@@ -59,10 +59,10 @@ print '''<html>
 				<a href="../index.php">Home</a>
 			</li>
 			<li>
-				<a class="current" href="../forum/forum.php">Forum</a>
+				<a href="../forum/forum.php">Forum</a>
 			</li>	
 			<li>
-				<a href="../wiki/wiki.php">Wiki</a>
+				<a class="current" href="../wiki/wiki.php">Wiki</a>
 			</li>
 			<li>
 				<a href="../about.php">About</a>
@@ -73,33 +73,33 @@ print '''<html>
 		</ul>
 	</nav>
 	<aside class="nav-aside">
-		<ul>
-			<li>
-				<a href="../forum/forum.php">Forum Home</a>
-			</li>
-			<li>
-				<a href="../forum/view_category.php?category=General">General</a>
-			</li>
-			<li>
-				<a href="../forum/view_category.php?category=Characters">Characters</a>
-			</li>
-			<li>
-				<a href="../forum/view_category.php?category=Differences">Differences</a>
-			</li>
-			<li>
-				<a href="../forum/view_category.php?category=Other">Other</a>
-			</li>
-			<li>
-				<a href="../forum/create-thread.php">Create New Thread</a>
-			</li>
-		</ul>
-	</aside>
-	<br><br><br><br><br>
+			<ul>
+				<li>
+					<a href="../wiki/wiki.php">Wiki Home</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=People">People</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Places">Places</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Events">Events</a>
+				</li>
+				<li>
+					<a href="../wiki/view-wiki-category.php?category=Miscellaneous">Miscellaneous</a>
+				</li>
+				<li>
+					<a href="../wiki/create-wiki-page.php">Create New Wiki Page</a>
+				</li>
+			</ul>
+		</aside>	
+	<BR><BR><BR><BR><BR>
 '''
 
 # If user not logged in, print error and quit program
 if not cook_str:
-	print "Sorry, you must be logged in to create a new thread.\n"
+	print "Sorry, you must be logged in to edit a page.\n"
 
 elif 'logged_in' in cook_str:
 	cookie = Cookie.SimpleCookie(cook_str)
@@ -109,20 +109,24 @@ elif 'logged_in' in cook_str:
 	cursor = conn.cursor()
 
 	# Grab Entered Data
-	category = new_thread['category'].value
-	title = new_thread['title'].value
-	content = new_thread['content'].value
+	title = edit_page['title'].value
+	content = ""
+	for key in sorted(edit_page.keys()):
+		if re.match("subt_\d+", key) != None:
+			x = re.search("\d+",key)
+			content += "<div class=\"subsection\">"
+			content += "<h3>"
+			content += edit_page[key].value
+			content += "</h3><div>"
+			content += edit_page["subc_"+x.group()].value
+			content += "</div></div>"
+		else:
+			pass
 
 	user = cookie['logged_in'].value
-	thread_id = 0
 
 	# Data Validation
 	error_string = ""
-	if title == "":
-		error_string += "Error: Title must be filled out.\n"
-
-	if len(title) > 100:
-		error_string += "Error: Title must be 100 characters or less.\n"
 
 	if content == "":
 		error_string += "Error: Content must be filled out.\n"
@@ -138,38 +142,28 @@ elif 'logged_in' in cook_str:
 
 	current_time = datetime.datetime.now()
 
-	thread_query = 'INSERT INTO Forum_Threads (category_name, title, user_created_by, created_datetime) VALUES (%s, %s, %s, %s)'
-	post_query = 'INSERT INTO Forum_Posts (thread_id, content, user_post_by, created_datetime) VALUES (%s, %s, %s, %s)'
+	query = "UPDATE Wiki_Pages SET content = '%s', user_last_edited_by = '%s', last_edited_datetime = '%s' WHERE title = " + "'" + title + "'";
 
-	thread_id = 0
 	try:
-		# Insert thread
-		cursor.execute(thread_query, (category, title, user, current_time))
-		
-		# Get inserted thread id
-		cursor.execute('SELECT LAST_INSERT_ID()')
-		row = cursor.fetchone()
-		thread_id = row[0]
-
-		# Insert post
-		cursor.execute(post_query, (thread_id, content, user, current_time))
+		# Update page
+		cursor.execute(query, (content, user, current_time))
 
 		conn.commit()
 	except:
 		conn.rollback()
-		print """An Error Occured while executing MySQL. Try Re-submitting your information. INSERT
+		print """An Error Occured while executing MySQL.
 		  </body>
 		</html>"""
 		sys.exit(0)
 
 	conn.close()
 
-	print "<h1>You have successfully created a new thread.</h1>"
-	print "View it <a href=\"../forum/viewthread.php?id=" + str(thread_id) + "\">Here</a>"
+	print "<h1>You have successfully edited a wiki page.</h1>"
+	print "View it <a href=\"../wiki/view-wiki-page.php?title=" + title + "\">here</a>"
 
 # If user not logged in, print error and quit program
 else:
-	print "Sorry, you must be logged in to create a new thread.\n"
+	print "Sorry, you must be logged in to edit a page.\n"
 	
 print '''
   </body>

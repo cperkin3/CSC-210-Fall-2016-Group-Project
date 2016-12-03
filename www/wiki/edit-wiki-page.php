@@ -108,32 +108,65 @@
 							// Parse through html content and display each subsection
 							$content = $row['content'];
 							$html = str_get_html($content);
+							$x = 0;
 
 							// Get each subsection
 							foreach ($html->find('div[class=subsection]')  as $subsections) {
 								// Subsection title
 								foreach($subsections->find('h3') as $h3) {
-									echo $h3->outertext;
+									echo "<div name='subt_" . $x . "'>";
+									echo $h3->innertext;
+									echo "</div>";
 								}
 
 								// Subsection content
 								foreach($subsections->find('div') as $subsection_content) {
-									echo "<textarea cols='40' rows='5' name='subsection_content'>";
+									echo "<textarea cols='40' rows='5' name='subc_" . $x . "'>";
 									echo $subsection_content->innertext;
 									echo "</textarea>";
 								}
+
+								$x++;
 							}
 						}
 
 						echo "<br><br>";
+
+						echo "<input type='hidden' name='title' value='$title'>";
 
 					} catch (PDOException $e) {
 						echo "Error: " . $e->getMessage() . "<br/>";
 						die();
 					}
 				?>
+				<div id="Subsections"></div>
+				<button onclick="addSubsection()" type="button">Add Subsection</button><br>
 				<input type="submit" value="Submit"/>
 			</form>
 		</article>
+		<script type="text/javascript" language="javascript">
+			var x = <?php echo $x; ?>;
+			function addSubsection() {
+				var home = document.getElementById('Subsections');
+				var subtitle_label = document.createElement('div');
+				subtitle_label.innerHTML = "Subsection Title: ";
+				home.append(subtitle_label);
+				var subtitle_input = document.createElement('input');
+				subtitle_input.setAttribute("type","text");
+				subtitle_input.setAttribute("name","subt_" + x.toString());
+				home.appendChild(subtitle_input);
+				home.appendChild(document.createElement('br'));
+				var subcontent_label = document.createElement('div');
+				subcontent_label.innerHTML = "Subsection Content: ";
+				home.append(subcontent_label);
+				var subcontent_input = document.createElement('textarea');
+				subcontent_input.setAttribute("cols","40");
+				subcontent_input.setAttribute("rows","5");
+				subcontent_input.setAttribute("name", "subc_" + x.toString());
+				x++;
+				home.appendChild(subcontent_input);
+				home.appendChild(document.createElement('br'));
+			}
+		</script>
 	</body>
 </html>
