@@ -74,76 +74,72 @@ core_html = '''<html>
 	</nav>
 '''
 
-print 'Content-Type: text/html'
-print 
-
-#try:
-query = "SELECT * FROM Forum_Threads WHERE user_created_by = %s"
-cursor.execute(query, (user, ))
-row = cursor.fetchone()
-while row is not None:
-	query = "UPDATE Forum_Threads SET user_created_by = '[deleted]' WHERE id=%s"
-	conn_local = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
-	cursor_local = conn_local.cursor()
-	cursor_local.execute(query, (row[0], ))
-	conn_local.commit()
-	conn_local.close()
+try:
+	query = "SELECT * FROM Forum_Threads WHERE user_created_by = %s"
+	cursor.execute(query, (user, ))
 	row = cursor.fetchone()
+	while row is not None:
+		query = "UPDATE Forum_Threads SET user_created_by = '[deleted]' WHERE id=%s"
+		conn_local = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
+		cursor_local = conn_local.cursor()
+		cursor_local.execute(query, (row[0], ))
+		conn_local.commit()
+		conn_local.close()
+		row = cursor.fetchone()
 
-query = "SELECT * FROM Forum_Posts WHERE user_post_by = %s"
-cursor.execute(query, (user, ))
-row = cursor.fetchone()
-while row is not None:
-	query = "UPDATE Forum_Posts SET user_post_by = '[deleted]' WHERE id=%s"
-	#print query
-	conn_local = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
-	cursor_local = conn_local.cursor()
-	cursor_local.execute(query, (row[0], ))
-	conn_local.commit()
-	conn_local.close()
+	query = "SELECT * FROM Forum_Posts WHERE user_post_by = %s"
+	cursor.execute(query, (user, ))
 	row = cursor.fetchone()
-	
-query = "SELECT * FROM Wiki_Pages WHERE user_last_edited_by = %s"
-cursor.execute(query, (user, ))
-row = cursor.fetchone()
-while row is not None:
-	query = "UPDATE Wiki_Pages SET user_last_edited_by = '[deleted]' WHERE title=%s"
-	conn_local = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
-	cursor_local = conn_local.cursor()
-	cursor_local.execute(query, (row[0], ))
-	conn_local.commit()
-	conn_local.close()
+	while row is not None:
+		query = "UPDATE Forum_Posts SET user_post_by = '[deleted]' WHERE id=%s"
+		conn_local = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
+		cursor_local = conn_local.cursor()
+		cursor_local.execute(query, (row[0], ))
+		conn_local.commit()
+		conn_local.close()
+		row = cursor.fetchone()
+		
+	query = "SELECT * FROM Wiki_Pages WHERE user_last_edited_by = %s"
+	cursor.execute(query, (user, ))
 	row = cursor.fetchone()
+	while row is not None:
+		query = "UPDATE Wiki_Pages SET user_last_edited_by = '[deleted]' WHERE title=%s"
+		conn_local = mysql.connector.connect(user='root', password='mysql', database='Thrones_Database')
+		cursor_local = conn_local.cursor()
+		cursor_local.execute(query, (row[0], ))
+		conn_local.commit()
+		conn_local.close()
+		row = cursor.fetchone()
 
-query = "DELETE FROM Users WHERE username=%s"
-cursor.execute(query, (user, ))
+	query = "DELETE FROM Users WHERE username=%s"
+	cursor.execute(query, (user, ))
 
-conn.commit()
+	conn.commit()
 
-#print 'Content-Type: text/html'
-#print 'Set-Cookie: logged_in=null; path=/; expires=Sun, 09 Oct 2016 00:00:00 GMT'
-#print
-print core_html
-print '''
-	<article>
-		<p>You have successfully deleted your account</p>
-	</article>
-  </body>
-</html>
-'''
-#except: 
-#conn.rollback()
-	
-#	print 'Content-Type: text/html'
-#	print 
-#	print core_html
-#	print sys.exc_info()[0]
-#	print '''
-#		<article>
-#			<p>I'm sorry, there was an error </p>
-#		</article>
-#	  </body>
-#	</html>
-#	'''
+	print 'Content-Type: text/html'
+	print 'Set-Cookie: logged_in=null; path=/; expires=Sun, 09 Oct 2016 00:00:00 GMT'
+	print
+	print core_html
+	print '''
+		<article>
+			<p>You have successfully deleted your account</p>
+		</article>
+	  </body>
+	</html>
+	'''
+except: 
+	conn.rollback()
+		
+	print 'Content-Type: text/html'
+	print 
+	print core_html
+	print sys.exc_info()[0]
+	print '''
+		<article>
+			<p>I'm sorry, there was an error </p>
+		</article>
+	  </body>
+	</html>
+	'''
 
 conn.close()
