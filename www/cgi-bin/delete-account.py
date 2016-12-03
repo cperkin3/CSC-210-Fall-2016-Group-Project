@@ -76,8 +76,6 @@ print '''<html>
 '''
 
 try:
-
-	 
 	query = "SELECT * FROM Forum_Posts WHERE user_post_by = %s"
 	cursor.execute(query, (user, ))
 	row = cursor.fetchone()
@@ -89,20 +87,28 @@ try:
 	query = "SELECT * FROM Forum_Threads WHERE user_created_by = %s"
 	cursor.execute(query, (user, ))
 	row = cursor.fetchone()
-	
-	
+	while row is not None:
+		query = "UPDATE Forum_Threads SET user_created_by = %s"
+		cursor.execute(query, (row[0], ))
+		row = cursor.fetchone()
 		
-	
-	
-	
-	query = "UPDATE Forum_Threads SET "
-	
-	
-	query = "UPDATE Wiki_Pages SET "
-	
-	
+	query = "SELECT * FROM Wiki_Pages WHERE user_last_edited_by = %s"
+	cursor.execute(query, (user, ))
+	row = cursor.fetchone()
+	while row is not None:
+		query = "UPDATE Wiki_Pages SET user_last_edited_by = %s"
+		cursor.execute(query, (row[0], ))
+		row = cursor.fetchone()
 	
 	conn.commit()
+	
+	print '''
+		<article>
+			<p>You have successfully deleted your account</p>
+		</article>
+	  </body>
+	</html>
+	'''
 except: 
 	conn.rollback()
 	print '''
@@ -114,8 +120,3 @@ except:
 	'''
 
 conn.close()
-
-
-
-
-
