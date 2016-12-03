@@ -86,7 +86,10 @@ try:
 		cursor.execute(query, (row[0], ))
 		row = cursor.fetchone()
 		
-		
+	query = "SELECT * FROM Forum_Threads WHERE user_created_by = %s"
+	cursor.execute(query, (user, ))
+	row = cursor.fetchone()
+	
 	
 		
 	
