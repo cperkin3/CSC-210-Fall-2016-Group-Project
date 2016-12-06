@@ -54,7 +54,7 @@
 		<article>
 			<h1>About the Page Authors</h1>
 			<h2>Matt Hood</h2>
-			<p></p>
+			<p>Senior at the University of Rochester majoring in Computer Science</p>
 			<h2>Megan Markert</h2>
 			<p>Megan is a senior Computer Science and Japanese dual major at the University of Rochester.</p>
 			<h2>Chris Perkins</h2>
