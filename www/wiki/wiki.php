@@ -73,11 +73,11 @@
 						// Set the PDO error mode to exception
 						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-						$stmt = $conn->prepare("SELECT title AND content FROM Wiki_Pages ORDER BY RAND() LIMIT 1");
+						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages ORDER BY RAND() LIMIT 1");
 						$stmt->execute();
 
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-							echo $row['title'] . " " . $row['content'];
+							echo "<a href=\"../wiki/view-wiki-page.php?title=" . $row['title'] . "\">" . $row['title'] . "</a>";
 						}
 
 					} catch (PDOException $e) {
