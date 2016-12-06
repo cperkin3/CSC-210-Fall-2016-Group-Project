@@ -53,6 +53,12 @@
 		</nav>
 		<article>
 			<h1>THROOOOOOOOONES</h1>
+			<p>This site is dedicated to the crossover between the show <i>Game of Thrones</i> and the book series <i>A Song of Ice and Fire</i>.</p>
+			<p>There is a forum for asking and answering questions about character, events, and any other aspect of the crossover you want to discuss. Debate on the forum is encouraged!</p>
+			<p>There is also a wiki, where pages should describe in some way a character, event, location, or other aspect with a focus towards the similarities and differences between how the show and the book handled the character, event, etc.</p>
+			<p>Have any questions? Feel free to reach out to one of the site creators, found via the 'About' link.</p>
+			<p>You'll have to create an account in order to post content, so that we can ensure maximum information is stored to verify the accuracy of our information.</p>
+			<p>Also, if anyone learns the release date of <i>Winds of Winter</i>, please feel free to SPAM EVERY POST telling us the date. We want the release date that bad.</p>
 		</article>
 		<aside>
 		
