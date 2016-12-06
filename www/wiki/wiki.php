@@ -56,7 +56,7 @@
 				<input type="text" name="search-bar" id="wiki-search-text-entry" required/>
 				<input type="submit" id="wiki-search-submit" value="SEARCH"/>
 			</form>
-			<h1>Game of Thrones / A Song of Ice and Fire Wiki</h1>
+			<h1>THROOOOOOOOONES Wiki Home</h1>
 		</article>
 		<aside class="nav-aside">
 			<ul>
