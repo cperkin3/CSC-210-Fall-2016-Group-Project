@@ -62,47 +62,83 @@
 				<h2> Learn something random about Game of Thrones! <h2>
 				<?php
 
-				mysql_select_db(name of database);
+					$servername = "localhost";
+					$username = "root";
+					$password = "mysql";
+					$dbname = "Thrones_Database";
 
-				$wikis = "SELECT title AND content FROM Wiki_Pages ORDER BY RAND() LIMIT 1";
+					try {
 
-				$result = mysql_query($wikis);
+						$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
-				WHILE ($row = mysql_fetch_array($result)):
-     			echo $row['title'] . " " . $row['content'];
-				ENDWHILE; 
-				//echo "$result";
+						// Set the PDO error mode to exception
+						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+						$stmt = $conn->prepare("SELECT title AND content FROM Wiki_Pages ORDER BY RAND() LIMIT 1");
+						$stmt->execute();
+
+						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+							echo $row['title'] . " " . $row['content'];
+						}
+
+					} catch (PDOException $e) {
+						echo "Error: " . $e->getMessage() . "<br/>";
+						die();
+					}
+
 				?>
 			<hr>
 				<h2> Longest wiki page <h2>  
 			<?php
-				$rowSQL = mysql_query( "SELECT MAX( ID ) AS max FROM Wiki_Pages;" );
-				$row = mysql_fetch_array( $rowSQL );
-		    	$largestNumber = $row['max'];
+
+				try {
+
+					$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+					// Set the PDO error mode to exception
+					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+					$stmt = $conn->prepare("SELECT MAX( content ) AS max FROM Wiki_Pages;");
+					$stmt->execute();
+
+					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+						$largestNumber = $row['max'];
+					}
+
+				} catch (PDOException $e) {
+					echo "Error: " . $e->getMessage() . "<br/>";
+					die();
+				}
+
 			?>	
 			<hr> 
 				<h2> Last Edited wiki by category <h2>
 				
 				<?php
-					
-					$result = mysql_query('SELECT title, content 
-                         FROM Wiki_Pages 
-                     ORDER BY title DESC 
-                        LIMIT 1') or die('Invalid query: ' . mysql_error());
 
-					//print values to screen
-					while ($row = mysql_fetch_assoc($result)) {
-						<ul>
-							  <li>echo $row['title'];</li>
-							  <li>echo $row['content'];</li>
+					try {
 
-						</ul>
+						$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+
+						// Set the PDO error mode to exception
+						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
+						$stmt = $conn->prepare("SELECT title, content FROM Wiki_Pages ORDER BY title DESC LIMIT 1");
+						$stmt->execute();
+
+						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
+							echo "<ul>";
+							echo "<li>" . $row['title'] . "</li>";
+							echo "<li>" . $row['content'] . "</li>";
+							echo "</ul>";
+						}
+
+					} catch (PDOException $e) {
+						echo "Error: " . $e->getMessage() . "<br/>";
+						die();
 					}
- 					// Free the resources associated with the result set
-					// This is done automatically at the end of the script
-					mysql_free_result($result);
 
-					?>
+				?>
 		</article>
 		<aside class="nav-aside">
 			<ul>
