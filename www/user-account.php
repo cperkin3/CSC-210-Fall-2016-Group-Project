@@ -121,12 +121,14 @@
 					echo "Error: " . $e->getMessage() . "<br/>";
 					die();
 				}
+				
+				echo '<form method="POST" action="cgi-bin/delete-account.py">
+						<button type="submit">Delete Account</button>
+					</form>';
 			}
 			?>
 			
-			<form method="POST" action="cgi-bin/delete-account.py">
-				<button type="submit">Delete Account</button>
-			</form>
+			
 			
 		</article>	
 		
