@@ -57,9 +57,8 @@
 				<input type="submit" id="wiki-search-submit" value="SEARCH"/>
 			</form>
 			<h1>THROOOOOOOOONES Wiki Home</h1>
-			<h1>Game of Thrones / A Song of Ice and Fire Wiki</h1>
 			<hr> 
-				<h2> Learn something random about Game of Thrones! <h2>
+				<h2> Learn something random about Game of Thrones! </h2>
 				<?php
 
 					$servername = "localhost";
@@ -88,7 +87,7 @@
 
 				?>
 			<hr>
-				<h2> Longest wiki page <h2>  
+				<h2> Longest wiki page </h2>  
 			<?php
 
 				try {
@@ -112,7 +111,7 @@
 
 			?>	
 			<hr> 
-				<h2> Last Edited wiki by category <h2>
+				<h2> Last Edited wiki by category </h2>
 				
 				<?php
 
