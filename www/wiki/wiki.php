@@ -122,15 +122,45 @@
 						// Set the PDO error mode to exception
 						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-						$stmt = $conn->prepare("SELECT title, content FROM Wiki_Pages ORDER BY title DESC LIMIT 1");
+						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE last_edited_datetime=(SELECT MAX(last_edited_datetime) FROM Wiki_Pages WHERE category_name='People') LIMIT 1");
 						$stmt->execute();
-
-						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-							echo "<ul>";
-							echo "<li>" . $row['title'] . "</li>";
-							echo "<li>" . $row['content'] . "</li>";
-							echo "</ul>";
-						}
+						$row = $stmt->fetch(PDO::FETCH_ASSOC);
+						echo "<h3>";
+						echo $row['category_name'];
+						echo "</h3>";
+						echo "<ul>";
+						echo "<li><a href=\"view-wiki-page.php?title=" . $row['title'] . "\">" . $row['title'] . "</a></li>";
+						echo "</ul>";
+						
+						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE last_edited_datetime=(SELECT MAX(last_edited_datetime) FROM Wiki_Pages WHERE category_name='Places') LIMIT 1");
+						$stmt->execute();
+						$row = $stmt->fetch(PDO::FETCH_ASSOC);
+						echo "<h3>";
+						echo $row['category_name'];
+						echo "</h3>";
+						echo "<ul>";
+						echo "<li><a href=\"view-wiki-page.php?title=" . $row['title'] . "\">" . $row['title'] . "</a></li>";
+						echo "</ul>";
+						
+						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE last_edited_datetime=(SELECT MAX(last_edited_datetime) FROM Wiki_Pages WHERE category_name='Events') LIMIT 1");
+						$stmt->execute();
+						$row = $stmt->fetch(PDO::FETCH_ASSOC);
+						echo "<h3>";
+						echo $row['category_name'];
+						echo "</h3>";
+						echo "<ul>";
+						echo "<li><a href=\"view-wiki-page.php?title=" . $row['title'] . "\">" . $row['title'] . "</a></li>";
+						echo "</ul>";
+						
+						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages WHERE last_edited_datetime=(SELECT MAX(last_edited_datetime) FROM Wiki_Pages WHERE category_name='Miscellaneous') LIMIT 1");
+						$stmt->execute();
+						$row = $stmt->fetch(PDO::FETCH_ASSOC);
+						echo "<h3>";
+						echo $row['category_name'];
+						echo "</h3>";
+						echo "<ul>";
+						echo "<li><a href=\"view-wiki-page.php?title=" . $row['title'] . "\">" . $row['title'] . "</a></li>";
+						echo "</ul>";
 
 					} catch (PDOException $e) {
 						echo "Error: " . $e->getMessage() . "<br/>";
