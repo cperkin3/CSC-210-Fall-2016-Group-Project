@@ -120,7 +120,13 @@
 								$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
 								// Query the database
-								$stmt = $conn->prepare("SELECT title, thread_id, user_created_by, Forum_Threads.created_datetime, MAX(Forum_Posts.created_datetime) FROM Forum_Posts INNER JOIN Forum_Threads WHERE category_name='$category' AND thread_id=Forum_Threads.id GROUP BY thread_id ORDER BY Forum_Posts.created_datetime DESC;");
+								
+								//"SELECT * FROM Wiki_Pages WHERE last_edited_datetime=(SELECT MAX(last_edited_datetime) FROM Wiki_Pages WHERE category_name='Places') LIMIT 1"
+								
+								$stmt = $conn->prepare("SELECT title, thread_id, user_created_by, Forum_Threads.created_datetime, MAX(Forum_Posts.created_datetime) FROM Forum_Posts INNER JOIN Forum_Threads WHERE category_name='$category' AND thread_id=Forum_Threads.id GROUP BY thread_id ORDER BY MAX(Forum_Posts.created_datetime) DESC;");
+								
+								//$stmt = $conn->prepare("SELECT title, thread_id, user_created_by, Forum_Posts.created_datetime, Forum_Threads.created_datetime FROM ")
+								
 								$stmt->execute();
 								
 								// Display each result
