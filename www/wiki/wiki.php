@@ -73,11 +73,11 @@
 						// Set the PDO error mode to exception
 						$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-						$stmt = $conn->prepare("SELECT title AND content FROM Wiki_Pages ORDER BY RAND() LIMIT 1");
+						$stmt = $conn->prepare("SELECT * FROM Wiki_Pages ORDER BY RAND() LIMIT 1");
 						$stmt->execute();
 
 						while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-							echo $row['title'] . " " . $row['content'];
+							echo "<a href=\"../wiki/view-wiki-page.php?title=" . $row['title'] . "\">" . $row['title'] . "</a>";
 						}
 
 					} catch (PDOException $e) {
@@ -89,26 +89,23 @@
 			<hr>
 				<h2> Longest wiki page </h2>  
 			<?php
-
 				try {
-
 					$conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
 
 					// Set the PDO error mode to exception
 					$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-					$stmt = $conn->prepare("SELECT MAX( content ) AS max FROM Wiki_Pages;");
+					$stmt = $conn->prepare("SELECT * FROM Wiki_Pages ORDER BY LENGTH(content) DESC LIMIT 1");
 					$stmt->execute();
 
 					while ($row = $stmt->fetch(PDO::FETCH_ASSOC)) {
-						$largestNumber = $row['max'];
+						$page_title = $row["title"];
+						echo "<a href=\"view-wiki-page.php?title=$page_title\">$page_title</a>";
 					}
-
 				} catch (PDOException $e) {
 					echo "Error: " . $e->getMessage() . "<br/>";
 					die();
 				}
-
 			?>	
 			<hr> 
 				<h2> Last Edited wiki by category </h2>

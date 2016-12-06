@@ -91,8 +91,6 @@
 						echo "Birthdate: $birthdate";
 						echo "<BR/>";
 						echo "Join Date: $join_date";
-						echo "<BR/>";
-						echo "Proflie Last Updated: $profile_last_updated";
 						echo "<BR/><BR/>";
 						echo "Email: $email";
 						echo "<BR />";
@@ -121,12 +119,14 @@
 					echo "Error: " . $e->getMessage() . "<br/>";
 					die();
 				}
+				
+				echo '<form method="POST" action="cgi-bin/delete-account.py">
+						<button type="submit">Delete Account</button>
+					</form>';
 			}
 			?>
 			
-			<form method="POST" action="cgi-bin/delete-account.py">
-				<button type="submit">Delete Account</button>
-			</form>
+			
 			
 		</article>	
 		
