@@ -57,6 +57,52 @@
 				<input type="submit" id="wiki-search-submit" value="SEARCH"/>
 			</form>
 			<h1>THROOOOOOOOONES Wiki Home</h1>
+			<h1>Game of Thrones / A Song of Ice and Fire Wiki</h1>
+			<hr> 
+				<h2> Learn something random about Game of Thrones! <h2>
+				<?php
+
+				mysql_select_db(name of database);
+
+				$wikis = "SELECT title AND content FROM Wiki_Pages ORDER BY RAND() LIMIT 1";
+
+				$result = mysql_query($wikis);
+
+				WHILE ($row = mysql_fetch_array($result)):
+     			echo $row['title'] . " " . $row['content'];
+				ENDWHILE; 
+				//echo "$result";
+				?>
+			<hr>
+				<h2> Longest wiki page <h2>  
+			<?php
+				$rowSQL = mysql_query( "SELECT MAX( ID ) AS max FROM Wiki_Pages;" );
+				$row = mysql_fetch_array( $rowSQL );
+		    	$largestNumber = $row['max'];
+			?>	
+			<hr> 
+				<h2> Last Edited wiki by category <h2>
+				
+				<?php
+					
+					$result = mysql_query('SELECT title, content 
+                         FROM Wiki_Pages 
+                     ORDER BY title DESC 
+                        LIMIT 1') or die('Invalid query: ' . mysql_error());
+
+					//print values to screen
+					while ($row = mysql_fetch_assoc($result)) {
+						<ul>
+							  <li>echo $row['title'];</li>
+							  <li>echo $row['content'];</li>
+
+						</ul>
+					}
+ 					// Free the resources associated with the result set
+					// This is done automatically at the end of the script
+					mysql_free_result($result);
+
+					?>
 		</article>
 		<aside class="nav-aside">
 			<ul>
