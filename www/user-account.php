@@ -91,8 +91,6 @@
 						echo "Birthdate: $birthdate";
 						echo "<BR/>";
 						echo "Join Date: $join_date";
-						echo "<BR/>";
-						echo "Proflie Last Updated: $profile_last_updated";
 						echo "<BR/><BR/>";
 						echo "Email: $email";
 						echo "<BR />";
