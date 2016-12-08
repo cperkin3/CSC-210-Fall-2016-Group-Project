@@ -120,7 +120,7 @@
 					die();
 				}
 				
-				echo '<form method="POST" action="cgi-bin/delete-account.py">
+				echo '<form method="POST" action="cgi-bin/delete-account.py" onsubmit="return confirm(\'Are you sure?\');">
 						<button type="submit">Delete Account</button>
 					</form>';
 			}
