@@ -125,8 +125,6 @@ else:
 		</html>"""
 		sys.exit(0)
 		
-# validate date - make sure not empty and no one under 13 can create an account
-
 # If any data invalid, print error and quit program
 if error_string != "":
 	print error_string
